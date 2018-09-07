@@ -26,6 +26,7 @@ public class PersonInfo {
 	private String profileImg;// 用户头像地址
 	private String phone;
 	private String email;
+	private String password;
 	private String user_type;
 	/**
 	 * 用户身份 0.学生 1.老师，默认为0
@@ -121,6 +122,22 @@ public class PersonInfo {
 
 	public void setLastEditTime(Date lastEditTime) {
 		this.lastEditTime = lastEditTime;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "PersonInfo [userId=" + userId + ", userName=" + userName + ", gender=" + gender + ", profileImg="
+				+ profileImg + ", phone=" + phone + ", email=" + email + ", password=" + password + ", user_type="
+				+ user_type + ", userType=" + userType + ", lable=" + lable + ", createTime=" + createTime
+				+ ", lastEditTime=" + lastEditTime + "]";
 	}
 
 }

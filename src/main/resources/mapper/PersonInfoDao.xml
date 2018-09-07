@@ -8,4 +8,14 @@
 		tb_person_info(user_name,gender,phone,email,user_type,lable,create_time,last_edit_time)
 		values(#{userName},#{gender},#{phone},#{email},#{userType},#{lable},#{createTime},#{lastEditTime})
 	</insert>
+
+	<select id="queryPresonInfo" resultType="PersonInfo">
+		select *
+		from
+		tb_person_info
+		<where>
+			<if test="phone != null">and phone = #{phone}</if>
+			<if test="email != null">and email = #{email}</if>
+		</where>
+	</select>
 </mapper>
