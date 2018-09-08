@@ -24,7 +24,7 @@ public class Course {
 	private Integer courseId;
 	private PersonInfo moderator;// 版主
 	private String courseName;
-	private Integer prioriy;
+	private Integer priority;
 	private Date createTime;
 	private Date lastEditTime;
 
@@ -44,12 +44,12 @@ public class Course {
 		this.courseName = courseName;
 	}
 
-	public Integer getPrioriy() {
-		return prioriy;
+	public Integer getPriority() {
+		return priority;
 	}
 
-	public void setPrioriy(Integer prioriy) {
-		this.prioriy = prioriy;
+	public void setPriority(Integer priority) {
+		this.priority = priority;
 	}
 
 	public Date getCreateTime() {
