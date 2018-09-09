@@ -31,70 +31,87 @@ import org.apache.catalina.User;
 public class Post {
 	private Integer postId;
 	private Course course;
-	private User deployUser;
+	private PersonInfo deployUser;
 	private Floor bestAnswer;
 	private String postContent;
 	private Integer priority;
 	/**
 	 * 0:可见，1：不可见
 	 */
-	private Integer enableView; 
+	private Integer enableView;
 	private Date createTime;
 	private Date lastEditTime;
+
 	public Integer getPostId() {
 		return postId;
 	}
+
 	public void setPostId(Integer postId) {
 		this.postId = postId;
 	}
+
 	public Course getCourse() {
 		return course;
 	}
+
 	public void setCourse(Course course) {
 		this.course = course;
 	}
-	public User getDeployUser() {
+
+	public PersonInfo getDeployUser() {
 		return deployUser;
 	}
-	public void setDeployUser(User deployUser) {
+
+	public void setDeployUser(PersonInfo deployUser) {
 		this.deployUser = deployUser;
 	}
+
 	public Floor getBestAnswer() {
 		return bestAnswer;
 	}
+
 	public void setBestAnswer(Floor bestAnswer) {
 		this.bestAnswer = bestAnswer;
 	}
+
 	public String getPostContent() {
 		return postContent;
 	}
+
 	public void setPostContent(String postContent) {
 		this.postContent = postContent;
 	}
+
 	public Integer getPriority() {
 		return priority;
 	}
+
 	public void setPriority(Integer priority) {
 		this.priority = priority;
 	}
+
 	public Integer getEnableView() {
 		return enableView;
 	}
+
 	public void setEnableView(Integer enableView) {
 		this.enableView = enableView;
 	}
+
 	public Date getCreateTime() {
 		return createTime;
 	}
+
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
+
 	public Date getLastEditTime() {
 		return lastEditTime;
 	}
+
 	public void setLastEditTime(Date lastEditTime) {
 		this.lastEditTime = lastEditTime;
 	}
-	
-	
+
 }
