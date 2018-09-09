@@ -5,7 +5,7 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-	
+
 	<servlet>
 		<servlet-name>MVCServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -51,7 +51,7 @@
 		<init-param>
 			<param-name>kaptcha.textproducer.font.size</param-name>
 			<param-value>43</param-value>
-		</init-param>		
+		</init-param>
 		<!-- 干扰线的颜色 -->
 		<init-param>
 			<param-name>kaptcha.noise.color</param-name>
@@ -61,7 +61,7 @@
 		<init-param>
 			<param-name>kaptcha.textproducer.char.length</param-name>
 			<param-value>4</param-value>
-		</init-param>		
+		</init-param>
 		<!-- 字体 -->
 		<init-param>
 			<param-name>kaptcha.textproducer.font.names</param-name>

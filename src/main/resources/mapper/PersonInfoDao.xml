@@ -5,8 +5,8 @@
 	<insert id="insertPersonInfo" parameterType="PersonInfo">
 		insert
 		into
-		tb_person_info(user_name,gender,phone,email,user_type,lable,create_time,last_edit_time)
-		values(#{userName},#{gender},#{phone},#{email},#{userType},#{lable},#{createTime},#{lastEditTime})
+		tb_person_info(user_name,gender,phone,email,password,user_type,lable,create_time,last_edit_time)
+		values(#{userName},#{gender},#{phone},#{email},#{password},#{userType},#{lable},#{createTime},#{lastEditTime})
 	</insert>
 
 	<select id="queryPresonInfo" resultType="PersonInfo">

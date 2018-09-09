@@ -27,11 +27,10 @@ public class PersonInfo {
 	private String phone;
 	private String email;
 	private String password;
-	private String user_type;
 	/**
 	 * 用户身份 0.学生 1.老师，默认为0
 	 */
-	private Integer userType;//
+	private Integer userType;
 	private String lable;// 用户标签
 	private Date createTime;
 	private Date lastEditTime;
@@ -84,14 +83,6 @@ public class PersonInfo {
 		this.email = email;
 	}
 
-	public String getUser_type() {
-		return user_type;
-	}
-
-	public void setUser_type(String user_type) {
-		this.user_type = user_type;
-	}
-
 	public Integer getUserType() {
 		return userType;
 	}
@@ -135,9 +126,8 @@ public class PersonInfo {
 	@Override
 	public String toString() {
 		return "PersonInfo [userId=" + userId + ", userName=" + userName + ", gender=" + gender + ", profileImg="
-				+ profileImg + ", phone=" + phone + ", email=" + email + ", password=" + password + ", user_type="
-				+ user_type + ", userType=" + userType + ", lable=" + lable + ", createTime=" + createTime
-				+ ", lastEditTime=" + lastEditTime + "]";
+				+ profileImg + ", phone=" + phone + ", email=" + email + ", password=" + password + ", userType="
+				+ userType + ", lable=" + lable + ", createTime=" + createTime + ", lastEditTime=" + lastEditTime + "]";
 	}
 
 }

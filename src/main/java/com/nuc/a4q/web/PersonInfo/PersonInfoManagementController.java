@@ -46,12 +46,14 @@ public class PersonInfoManagementController {
 		return model;
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "loginAuth", method = RequestMethod.POST)
 	public Map<String, Object> loginAuth(@RequestBody PersonInfo personInfo, HttpServletRequest request) {
 		Map<String, Object> model = new HashMap<>();
 		// 1.接受参数
 		// 2.调用servicec层
 		try {
+/*			String shopInfo = request.getParameter("personInfo");*/
 			PersonInfoDto dto = service.loginAuth(personInfo);
 			if (dto.getEnum1().getState() == PersonInfoStateEnum.SUCCESS.getState()) {
 				model.put("success", true);
