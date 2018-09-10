@@ -1,5 +1,6 @@
 package com.nuc.a4q.service;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,6 +13,7 @@ public class PersonInfoServiceTest extends BaseTest {
 	PersonInfoService service;
 
 	@Test
+	/*@Ignore*/
 	public void loginAuthTest() {
 		PersonInfo personInfo = new PersonInfo();
 		personInfo.setPhone("18235105722");
@@ -19,4 +21,6 @@ public class PersonInfoServiceTest extends BaseTest {
 		PersonInfoDto dto = service.loginAuth(personInfo);
 		System.out.println(dto.getEnum1().getStateInfo());
 	}
+	
+	
 }

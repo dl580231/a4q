@@ -2,6 +2,8 @@ package com.nuc.a4q.entity;
 
 import java.util.Date;
 
+import javax.validation.constraints.Min;
+
 /**
  * 
  * @author DL
@@ -20,6 +22,7 @@ import java.util.Date;
  * 
  */
 public class PersonInfo {
+	@Min(value = 18,message="未成年")
 	private Integer userId;
 	private String userName;// 用户的名字
 	private String gender;// 用户性别

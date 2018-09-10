@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +28,13 @@ public class PersonInfoManagementController {
 
 	@RequestMapping(value = "userRegister", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> userRegister(@RequestBody PersonInfo personInfo) {
+	public Map<String, Object> userRegister(@RequestBody @Validated PersonInfo personInfo, BindingResult result) {
+		if (result.hasErrors()) {
+			System.out.println("...........");
+			System.out.println(result.getFieldError());
+			System.out.println("............");
+			return null;
+		}
 		Map<String, Object> model = new HashMap<>();
 		// 1.接受参数
 		// 2.调用servicec层
@@ -53,7 +61,7 @@ public class PersonInfoManagementController {
 		// 1.接受参数
 		// 2.调用servicec层
 		try {
-/*			String shopInfo = request.getParameter("personInfo");*/
+			/* String shopInfo = request.getParameter("personInfo"); */
 			PersonInfoDto dto = service.loginAuth(personInfo);
 			if (dto.getEnum1().getState() == PersonInfoStateEnum.SUCCESS.getState()) {
 				model.put("success", true);
