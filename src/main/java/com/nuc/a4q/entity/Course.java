@@ -76,4 +76,10 @@ public class Course {
 		this.moderator = moderator;
 	}
 
+	@Override
+	public String toString() {
+		return "Course [courseId=" + courseId + ", moderator=" + moderator + ", courseName=" + courseName
+				+ ", priority=" + priority + ", createTime=" + createTime + ", lastEditTime=" + lastEditTime + "]";
+	}
+
 }

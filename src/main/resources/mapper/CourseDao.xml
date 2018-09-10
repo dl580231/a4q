@@ -8,15 +8,44 @@
  		values(#{moderator.userId},#{courseName},#{priority},#{createTime},#{lastEditTime})
  	</insert>
  	
+ 	<update id="updateCourse" parameterType="Course">
+ 		update tb_course
+		<set>
+			<if test="moderator!=null">moderator_id=#{moderator.userId},</if>
+			<if test="courseName!=null">course_name=#{courseName},</if>
+			<if test="priority!=null">priority=#{priority},</if>
+			<if test="createTime!=null">create_time=#{createTime},</if>
+			<if test="lastEditTime!=null">last_edit_time=#{lastEditTime},</if>
+		</set>
+		where course_id=#{courseId}
+ 	</update>
+ 	
  	<delete id="deleteCourse" parameterType="Course">
  		delete from tb_course where course_id=#{courseId}
  	</delete>
- 	
- 	<update id="updateCourse" parameterType="Course">
- 		update tb_course set moderator_id=#{modator.userId},priority=#{priority},create_time={createTime},last_edit_time{lastEditTime} where course_id=#{courseId}
- 	</update>
- 	<select id="selectCourse" parameterType="Course">
- 		
+ 	 	
+ 	<select id="queryCourseList" resultMap="courseMap">
+ 		select
+ 		course_id,p.user_id,p.user_name,course_name,priority,c.create_time,c.last_edit_time
+ 		from 
+ 		tb_course c left join tb_person_info p on c.moderator_id=p.user_id
+ 		<where>
+ 			<if test="courseName != null">and course_name like CONCAT("%",#{courseName},"%")</if>
+ 			<if test="moderator != null">and moderator_id = #{moderator.userId}</if>
+ 			<if test="courseId != null">and course_id = #{courseId}</if>
+ 		</where>
  	</select>
+ 	
+ 	<resultMap type="Course" id="courseMap">
+ 		<id column="course_id" property="courseId"/>
+ 		<result column="course_name" property="courseName"/>
+ 		<result column="priority" property="priority"/>
+ 		<result column="create_time" property="createTime"/>
+ 		<result column="last_edit_time" property="lastEditTime"/>
+ 		<association property="moderator" javaType="PersonInfo">
+ 			<id column="user_id" property="userId"/>
+ 			<result column="user_name" property="userName"/>
+ 		</association>
+ 	</resultMap>
  </mapper>
  

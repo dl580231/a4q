@@ -26,13 +26,12 @@ package com.nuc.a4q.entity;
 
 import java.util.Date;
 
-import org.apache.catalina.User;
-
 public class Post {
 	private Integer postId;
 	private Course course;
 	private PersonInfo deployUser;
 	private Floor bestAnswer;
+	private String postTitle;
 	private String postContent;
 	private Integer priority;
 	/**
@@ -68,6 +67,14 @@ public class Post {
 
 	public Floor getBestAnswer() {
 		return bestAnswer;
+	}
+
+	public String getPostTitle() {
+		return postTitle;
+	}
+
+	public void setPostTitle(String postTitle) {
+		this.postTitle = postTitle;
 	}
 
 	public void setBestAnswer(Floor bestAnswer) {
@@ -112,6 +119,13 @@ public class Post {
 
 	public void setLastEditTime(Date lastEditTime) {
 		this.lastEditTime = lastEditTime;
+	}
+
+	@Override
+	public String toString() {
+		return "Post [postId=" + postId + ", course=" + course + ", deployUser=" + deployUser + ", bestAnswer="
+				+ bestAnswer + ", postTitle=" + postTitle + ", postContent=" + postContent + ", priority=" + priority
+				+ ", enableView=" + enableView + ", createTime=" + createTime + ", lastEditTime=" + lastEditTime + "]";
 	}
 
 }
