@@ -2,7 +2,11 @@ package com.nuc.a4q.entity;
 
 import java.util.Date;
 
-import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
 
 /**
  * 
@@ -22,18 +26,24 @@ import javax.validation.constraints.Min;
  * 
  */
 public class PersonInfo {
-	@Min(value = 18,message="未成年")
 	private Integer userId;
+	@NotNull(message = "用户名字不能为空")
 	private String userName;// 用户的名字
 	private String gender;// 用户性别
 	private String profileImg;// 用户头像地址
+	@NotNull(message = "手机号不能为空")
+	@Pattern(regexp = "^1[\\d]{10}$", message = "电话号码格式有误")
 	private String phone;
+	@NotNull(message = "邮箱地址不能为空")
+	@Email(message = "邮箱地址格式出错")
 	private String email;
+	@NotNull(message = "密码不能为空")
+	@Size(min = 6, max = 15, message = "密码为6-15的大小写字母+数字组合")
+	@Pattern(regexp = "[a-z|A-z|0-9]{6,15}", message = "密码为6-15的大小写字母+数字组合")
 	private String password;
-	/**
-	 * 用户身份 0.学生 1.老师，默认为0
-	 */
-	private Integer userType;
+	@NotNull(message = "用户身份不能为空")
+	@Pattern(regexp = "^(学生|老师)$", message = "用户身份输入错误")
+	private String userType;// 用户身份 :学生 ,老师
 	private String lable;// 用户标签
 	private Date createTime;
 	private Date lastEditTime;
@@ -86,11 +96,11 @@ public class PersonInfo {
 		this.email = email;
 	}
 
-	public Integer getUserType() {
+	public String getUserType() {
 		return userType;
 	}
 
-	public void setUserType(Integer userType) {
+	public void setUserType(String userType) {
 		this.userType = userType;
 	}
 

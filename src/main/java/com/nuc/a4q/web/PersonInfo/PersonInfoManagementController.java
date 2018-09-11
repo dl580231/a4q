@@ -1,8 +1,5 @@
 package com.nuc.a4q.web.PersonInfo;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.nuc.a4q.dto.PersonInfoDto;
 import com.nuc.a4q.entity.PersonInfo;
-import com.nuc.a4q.enums.PersonInfoStateEnum;
-import com.nuc.a4q.exception.PersonInfoOperationException;
+import com.nuc.a4q.entity.Result;
+import com.nuc.a4q.enums.ResultEnum;
 import com.nuc.a4q.service.PersonInfoService;
+import com.nuc.a4q.utils.ResultUtil;
 
 @Controller
 @RequestMapping("personInfoAdmin")
@@ -28,53 +25,28 @@ public class PersonInfoManagementController {
 
 	@RequestMapping(value = "userRegister", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> userRegister(@RequestBody @Validated PersonInfo personInfo, BindingResult result) {
-		if (result.hasErrors()) {
-			System.out.println("...........");
-			System.out.println(result.getFieldError());
-			System.out.println("............");
-			return null;
+	public Result userRegister(@RequestBody @Validated PersonInfo personInfo, BindingResult bindingResult) {
+		// 0.表单验证
+		if (bindingResult.hasErrors()) {
+			return ResultUtil.error(ResultEnum.FORM_AUTH_ERROR.getState(),
+					bindingResult.getFieldError().getDefaultMessage());
 		}
-		Map<String, Object> model = new HashMap<>();
 		// 1.接受参数
-		// 2.调用servicec层
-		try {
-			PersonInfoDto dto = service.addPersoninfo(personInfo);
-			if (dto.getEnum1().getState() == PersonInfoStateEnum.SUCCESS.getState()) {
-				model.put("success", true);
-			} else {
-				model.put("success", false);
-				model.put("errorMsg", dto.getEnum1().getStateInfo());
-			}
-		} catch (PersonInfoOperationException e) {
-			model.put("success", false);
-			model.put("errorMsg", "出现异常" + e.getMessage());
-		}
+		// 2.调用service层
+		service.addPersoninfo(personInfo);
 		// 3.返回结果
-		return model;
+		return ResultUtil.success();
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "loginAuth", method = RequestMethod.POST)
-	public Map<String, Object> loginAuth(@RequestBody PersonInfo personInfo, HttpServletRequest request) {
-		Map<String, Object> model = new HashMap<>();
+	public Result loginAuth(@RequestBody PersonInfo personInfo, HttpServletRequest request) {
 		// 1.接受参数
-		// 2.调用servicec层
-		try {
-			/* String shopInfo = request.getParameter("personInfo"); */
-			PersonInfoDto dto = service.loginAuth(personInfo);
-			if (dto.getEnum1().getState() == PersonInfoStateEnum.SUCCESS.getState()) {
-				model.put("success", true);
-				request.getSession().setAttribute("user", dto.getPersonInfo());
-			} else {
-				model.put("success", false);
-				model.put("errorMsg", dto.getEnum1().getStateInfo());
-			}
-		} catch (PersonInfoOperationException e) {
-			model.put("success", false);
-			model.put("errorMsg", e.getMessage());
-		}
+		// 2.调用service层
+		PersonInfo user = service.loginAuth(personInfo);
+		request.getSession().setAttribute("user", user);
 		// 3.返回结果
-		return model;
+		return ResultUtil.success();
 	}
+
 }
