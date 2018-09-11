@@ -35,6 +35,9 @@
  		tb_post p left join tb_floor f on p.best_answer_id=f.floor_id,tb_person_info per,tb_course c
  		<where>
  			<if test="postContent!=null">and post_content like CONCAT("%",#{postContent},"%")</if>
+ 			<if test="deployUser!=null">and p.user_id=#{deployUser.userId}</if>
+ 			<if test="course!=null">and p.course_id=#{course.courseId}</if>
+ 			<if test="bestAnswer!=null">and p.best_answer_id=#{bestAnswer.floorId}</if>
  			<if test="course!=null">and c.course_id=p.course_id</if>
  			<if test="deployUser!=null">and per.user_id=p.user_id</if>
  		</where>
