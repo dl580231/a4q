@@ -1,7 +1,5 @@
 package com.nuc.a4q.utils;
 
-import java.util.List;
-
 import com.nuc.a4q.entity.PageDivide;
 
 public class PageUtil {
@@ -36,7 +34,7 @@ public class PageUtil {
 	 * @param entityList
 	 */
 	public static void buildPageDivide(PageDivide pageDivide, Integer rowCount, Integer pageRowCount,
-			List entityList) {
+			Object entityList) {
 		Integer pageCount = getPageCount(rowCount, pageRowCount);
 		pageDivide.setEntityList(entityList);
 		pageDivide.setPageCount(pageCount);

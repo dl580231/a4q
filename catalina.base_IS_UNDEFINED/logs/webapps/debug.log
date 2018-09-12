@@ -1,7 +1,7 @@
-2018-09-255 16:31:12:012 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoCount - ==>  Preparing: select count(user_id) from tb_person_info 
-2018-09-255 16:31:12:012 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoCount - ==> Parameters: 
-2018-09-255 16:31:12:012 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoCount - <==      Total: 1
-2018-09-255 16:31:12:012 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoList - ==>  Preparing: select * from tb_person_info limit ?,? 
-2018-09-255 16:31:12:012 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoList - ==> Parameters: 0(Integer), 10(Integer)
-2018-09-255 16:31:12:012 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoList - <==      Total: 4
-2018-09-255 16:31:12:012 [main] DEBUG com.nuc.a4q.service.PersonInfoServiceTest - [com.nuc.a4q.entity.PersonInfo@41dd05a, com.nuc.a4q.entity.PersonInfo@613a8ee1, com.nuc.a4q.entity.PersonInfo@178213b, com.nuc.a4q.entity.PersonInfo@7103cb56]
+2018-09-255 16:35:47:047 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoCount - ==>  Preparing: select count(user_id) from tb_person_info 
+2018-09-255 16:35:47:047 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoCount - ==> Parameters: 
+2018-09-255 16:35:47:047 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoCount - <==      Total: 1
+2018-09-255 16:35:47:047 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoList - ==>  Preparing: select * from tb_person_info limit ?,? 
+2018-09-255 16:35:47:047 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoList - ==> Parameters: 0(Integer), 10(Integer)
+2018-09-255 16:35:47:047 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoList - <==      Total: 4
+2018-09-255 16:35:48:048 [main] DEBUG com.nuc.a4q.service.PersonInfoServiceTest - [PersonInfo [userId=1, userName=demo, gender=男, profileImg=null, phone=18235105722, email=657838012@qq.com, password=580231, userType=学生, lable=null, createTime=Fri Sep 07 11:00:28 CST 2018, lastEditTime=Fri Sep 07 11:00:28 CST 2018], PersonInfo [userId=3, userName=王丹, gender=女, profileImg=null, phone=15034599083, email=957793805@qq.com, password=580231, userType=老师, lable=null, createTime=Sun Sep 09 11:30:58 CST 2018, lastEditTime=Sun Sep 09 11:30:58 CST 2018], PersonInfo [userId=4, userName=张三, gender=null, profileImg=null, phone=18235102212, email=6578381@qqom, password=154515156165, userType=学生, lable=null, createTime=Tue Sep 11 12:40:49 CST 2018, lastEditTime=Tue Sep 11 12:40:49 CST 2018], PersonInfo [userId=9, userName=张三, gender=null, profileImg=null, phone=18235112212, email=6578381@sqqom, password=1545115sd156165, userType=学生, lable=null, createTime=Tue Sep 11 13:32:49 CST 2018, lastEditTime=Tue Sep 11 13:32:49 CST 2018]]
