@@ -1,0 +1,7 @@
+2018-09-255 16:31:12:012 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoCount - ==>  Preparing: select count(user_id) from tb_person_info 
+2018-09-255 16:31:12:012 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoCount - ==> Parameters: 
+2018-09-255 16:31:12:012 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoCount - <==      Total: 1
+2018-09-255 16:31:12:012 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoList - ==>  Preparing: select * from tb_person_info limit ?,? 
+2018-09-255 16:31:12:012 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoList - ==> Parameters: 0(Integer), 10(Integer)
+2018-09-255 16:31:12:012 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.queryPersonInfoList - <==      Total: 4
+2018-09-255 16:31:12:012 [main] DEBUG com.nuc.a4q.service.PersonInfoServiceTest - [com.nuc.a4q.entity.PersonInfo@41dd05a, com.nuc.a4q.entity.PersonInfo@613a8ee1, com.nuc.a4q.entity.PersonInfo@178213b, com.nuc.a4q.entity.PersonInfo@7103cb56]

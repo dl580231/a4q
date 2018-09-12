@@ -7,6 +7,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * 
@@ -27,7 +28,7 @@ import org.hibernate.validator.constraints.Email;
  */
 public class PersonInfo {
 	private Integer userId;
-	@NotNull(message = "用户名字不能为空")
+	@NotBlank(message = "用户名字不能为空")
 	private String userName;// 用户的名字
 	private String gender;// 用户性别
 	private String profileImg;// 用户头像地址

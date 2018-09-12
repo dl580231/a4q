@@ -1,6 +1,7 @@
 package com.nuc.a4q.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -14,6 +15,7 @@ public class PersonInfoDaoTest extends BaseTest {
 	private PersonInfoDao dao;
 
 	@Test
+	@Ignore
 	public void insertPersonInfoTest() {
 		PersonInfo info = new PersonInfo();
 		info.setUserName("王丹");
@@ -21,7 +23,7 @@ public class PersonInfoDaoTest extends BaseTest {
 		info.setEmail("957793805@qq.com");
 		info.setPhone("15034599083");
 		info.setPassword("580231");
-		/*info.setUserType(0);*/
+		/* info.setUserType(0); */
 		info.setCreateTime(new Date());
 		info.setLastEditTime(new Date());
 		Integer i = dao.insertPersonInfo(info);
@@ -35,5 +37,20 @@ public class PersonInfoDaoTest extends BaseTest {
 		personInfo.setEmail("657838012@qq.com");
 		PersonInfo info = dao.queryPresonInfo(personInfo);
 		System.out.println(info);
+	}
+
+	@Test
+	@Ignore
+	public void getPresonInfoListTest() {
+		PersonInfo personInfo = new PersonInfo();
+		personInfo.setUserType("老师");
+		List<PersonInfo> list = dao.queryPersonInfoList(0, 1, personInfo);
+		System.out.println(list.size());
+	}
+
+	@Test
+	public void getPersonInfoCount() {
+		Integer personInfoCount = dao.queryPersonInfoCount();
+		System.out.println(personInfoCount);
 	}
 }

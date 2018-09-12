@@ -24,7 +24,7 @@ public class ExceptionHandle {
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
 	public Result unknowEexceptionHandle(RuntimeException e) {
-		logger.error("-----系统内部错误-----{}", e.toString());
+		logger.error("-----系统内部错误-----{}", e);
 		return ResultUtil.error(ResultEnum.INNER_ERROR.getState(), ResultEnum.INNER_ERROR.getStateInfo());
 	}
 

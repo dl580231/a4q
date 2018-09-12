@@ -18,4 +18,18 @@
 			<if test="email != null">and email = #{email}</if>
 		</where>
 	</select>
+
+	<select id="queryPersonInfoList" resultType="PersonInfo">
+		select *
+		from tb_person_info
+		<where>
+			<if test="info!=null and info.userType != null">user_type = #{info.userType}</if>
+		</where>
+		limit #{rowStart},#{rowSize}
+	</select>
+
+	<select id="queryPersonInfoCount" resultType="int">
+		select count(user_id)
+		from tb_person_info
+	</select>
 </mapper>

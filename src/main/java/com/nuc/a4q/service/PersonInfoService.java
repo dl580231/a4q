@@ -1,15 +1,18 @@
 package com.nuc.a4q.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.nuc.a4q.dao.PersonInfoDao;
+import com.nuc.a4q.entity.PageDivide;
 import com.nuc.a4q.entity.PersonInfo;
 import com.nuc.a4q.enums.ResultEnum;
 import com.nuc.a4q.exception.LogicException;
+import com.nuc.a4q.utils.PageUtil;
 
 @Service
 @Transactional
@@ -68,7 +71,7 @@ public class PersonInfoService {
 		info.setEmail(personInfo.getEmail());
 		PersonInfo resultEmail = dao.queryPresonInfo(info);
 		if (resultEmail != null) {
-			throw new LogicException(ResultEnum.DUPLICATE_EMAIL.getState(), ResultEnum.DUPLICATE_EMAIL.getStateInfo());
+			throw new LogicException("邮箱地址已经被注册");
 		}
 		info.setEmail(null);
 		info.setPhone(personInfo.getPhone());
@@ -76,5 +79,29 @@ public class PersonInfoService {
 		if (resultPhone != null) {
 			throw new LogicException(ResultEnum.DUPLICATE_PHONE.getState(), ResultEnum.DUPLICATE_PHONE.getStateInfo());
 		}
+	}
+
+	/**
+	 * 分页查询用户信息
+	 * 
+	 * @param pageDivide
+	 * @param personInfo
+	 */
+	public PageDivide getPersonInfoList(PageDivide pageDivide, PersonInfo personInfo) {
+		// 0.参数判空
+		if (pageDivide == null)
+			pageDivide = new PageDivide();
+		// 1.操作数据库
+		Integer rowCount = dao.queryPersonInfoCount();
+		if (rowCount < 1)
+			throw new LogicException("查询数据为空");
+		Integer rowStart = PageUtil.getRowStart(pageDivide.getCurrentPage(), pageDivide.getPageRowCount());
+		if (rowStart > rowCount)
+			throw new LogicException("查询数据为空");
+		List<PersonInfo> personInfoList = dao.queryPersonInfoList(rowStart, pageDivide.getPageRowCount(), personInfo);
+		// 2.封装pageDivide
+		PageUtil.buildPageDivide(pageDivide, rowCount, pageDivide.getPageRowCount(), personInfoList);
+		// 3.向controller返回数据
+		return pageDivide;
 	}
 }

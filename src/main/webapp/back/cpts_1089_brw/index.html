@@ -1,14 +1,17 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>答疑后台系统</title>
-	<link href="style/authority/main_css.css" rel="stylesheet" type="text/css" />
-	<link href="style/authority/zTreeStyle.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/jquery/jquery-1.7.1.js"></script>
-	<script type="text/javascript" src="scripts/zTree/jquery.ztree.core-3.2.js"></script>
-	<script type="text/javascript" src="scripts/authority/commonAll.js"></script>
-	<script type="text/javascript">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>答疑后台系统</title>
+<link href="style/authority/main_css.css" rel="stylesheet"
+	type="text/css" />
+<link href="style/authority/zTreeStyle.css" rel="stylesheet"
+	type="text/css">
+<script type="text/javascript" src="scripts/jquery/jquery-1.7.1.js"></script>
+<script type="text/javascript"
+	src="scripts/zTree/jquery.ztree.core-3.2.js"></script>
+<script type="text/javascript" src="scripts/authority/commonAll.js"></script>
+<script type="text/javascript">
 		/**退出系统**/
 		function logout(){
 			if(confirm("您确定要退出本系统吗？")){
@@ -144,45 +147,38 @@
 	</script>
 </head>
 <body onload="getDate01()">
-    <div id="top">
-		<div id="top_logo">
-			
-		</div>
+	<div id="top">
+		<div id="top_logo"></div>
 		<div id="top_links">
 			<div id="top_op">
 				<ul>
-					<li>
-						<img alt="当前用户" src="images/common/user.jpg">：
-						<span>admin</span>
+					<li><img alt="当前用户" src="images/common/user.jpg">： <span>admin</span>
 					</li>
-					<li>
-						<img alt="事务月份" src="images/common/month.jpg">：
-						<span id="yue_fen"></span>
-					</li>
-					<li>
-						<img alt="今天是" src="images/common/date.jpg">：
-						<span id="day_day"></span>
-					</li>
-				</ul> 
+					<li><img alt="事务月份" src="images/common/month.jpg">： <span
+						id="yue_fen"></span></li>
+					<li><img alt="今天是" src="images/common/date.jpg">： <span
+						id="day_day"></span></li>
+				</ul>
 			</div>
 			<div id="top_close">
 				<a href="javascript:void(0);" onclick="logout();" target="_parent">
-					<img alt="退出系统" title="退出系统" src="images/common/close.jpg" style="position: relative; top: 10px; left: 25px;">
+					<img alt="退出系统" title="退出系统" src="images/common/close.jpg"
+					style="position: relative; top: 10px; left: 25px;">
 				</a>
 			</div>
 		</div>
 	</div>
-    <!-- side menu start -->
+	<!-- side menu start -->
 	<div id="side">
-		
-		 <div id="left_menu_cnt">
-		 	<div id="nav_module">
-		 		<img src="images/common/module_1.png" width="210" height="58"/>
-		 	</div>
-		 	<div id="nav_resource">
-		 		<ul id="dleft_tab1" class="ztree"></ul>
-		 	</div>
-		 </div>
+
+		<div id="left_menu_cnt">
+			<div id="nav_module">
+				<img src="images/common/module_1.png" width="210" height="58" />
+			</div>
+			<div id="nav_resource">
+				<ul id="dleft_tab1" class="ztree"></ul>
+			</div>
+		</div>
 	</div>
 	<script type="text/javascript">
 		$(function(){
@@ -199,15 +195,16 @@
 				});
 				
 	</script>
-    <!-- side menu start -->
-    <div id="top_nav">
-	 	<span id="here_area">当前位置：系统&nbsp;>&nbsp;系统介绍</span>
+	<!-- side menu start -->
+	<div id="top_nav">
+		<span id="here_area">当前位置：系统&nbsp;>&nbsp;系统介绍</span>
 	</div>
-    <div id="main">
-      	<iframe name="right" id="rightMain" src="introduce.html" frameborder="no" scrolling="auto" width="100%" height="100%" allowtransparency="true"/>
-    </div>
+	<div id="main">
+		<iframe name="right" id="rightMain" src="introduce.html"
+			frameborder="no" scrolling="auto" width="100%" height="100%"
+			allowtransparency="true" />
+	</div>
 
-</body>        
+</body>
 </html>
-   
- 
+
