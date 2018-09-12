@@ -55,14 +55,15 @@ public class PersonInfoManagementController {
 
 	@ResponseBody
 	@RequestMapping(value = "getPersonInfoList", method = RequestMethod.POST)
-	public Result getPersonInfoList(@RequestBody /* (required = true) */ Map<String, Object> json) {
+	public Result getPersonInfoList(@RequestBody /* (required = true) */ Map<String, Object> jsonMap) throws Exception {
 		// 1.处理前端传来的数据
 		ObjectMapper mapper = new ObjectMapper();
-		@SuppressWarnings("unchecked")
-		PageDivide<T> = json.get("pageDivide");
-		Object personInfoObj = json.get("personInfo");
+		String json = mapper.writeValueAsString(jsonMap.get("pageDivide")); // 将对象转换成json
+		PageDivide pageDivide = mapper.readValue(json, PageDivide.class);
+		json = mapper.writeValueAsString(jsonMap.get("personInfo")); // 将对象转换成json
+		PersonInfo personInfo = mapper.readValue(json, PersonInfo.class);
 		// 2.调用service进行处理
-		PageDivide<PersonInfo> pageDividResult = service.getPersonInfoList(pageDivide, personInfo);
+		PageDivide pageDividResult = service.getPersonInfoList(pageDivide, personInfo);
 		// 3.向前端返回数据
 		return ResultUtil.success(pageDividResult);
 	}
