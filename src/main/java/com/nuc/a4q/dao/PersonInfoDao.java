@@ -39,4 +39,11 @@ public interface PersonInfoDao {
 	 * @return
 	 */
 	public Integer queryPersonInfoCount();
+	
+	/**
+	 * 删除用户信息
+	 * @param personInfo
+	 * @return
+	 */
+	public Integer deleteUser(PersonInfo personInfo);
 }

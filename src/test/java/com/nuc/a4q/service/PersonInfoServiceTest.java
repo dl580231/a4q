@@ -28,6 +28,7 @@ public class PersonInfoServiceTest extends BaseTest {
 	@Test
 	public void getPersonInfoListTest() {
 		PageDivide pageDivide = new PageDivide();
+		pageDivide.setCurrentPage(2);
 		service.getPersonInfoList(pageDivide, null);
 		logger.debug("" + pageDivide.getEntityList());
 	}

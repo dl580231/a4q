@@ -15,19 +15,28 @@ public class PersonInfoDaoTest extends BaseTest {
 	private PersonInfoDao dao;
 
 	@Test
-	@Ignore
 	public void insertPersonInfoTest() {
 		PersonInfo info = new PersonInfo();
-		info.setUserName("王丹");
+		info.setUserName("王丹丹");
 		info.setGender("女");
-		info.setEmail("957793805@qq.com");
-		info.setPhone("15034599083");
+		info.setUserType("学生");
+		info.setEmail("9577938035@qq.com");
+		info.setPhone("150345939083");
 		info.setPassword("580231");
 		/* info.setUserType(0); */
 		info.setCreateTime(new Date());
 		info.setLastEditTime(new Date());
 		Integer i = dao.insertPersonInfo(info);
 		System.out.println(i);
+	}
+	
+	@Test
+	@Ignore
+	public void deleteUserTest() {
+		PersonInfo personInfo = new PersonInfo();
+		personInfo.setUserId(21);
+		Integer result = dao.deleteUser(personInfo);
+		System.out.println(result);
 	}
 
 	@Test
@@ -49,6 +58,7 @@ public class PersonInfoDaoTest extends BaseTest {
 	}
 
 	@Test
+	@Ignore
 	public void getPersonInfoCount() {
 		Integer personInfoCount = dao.queryPersonInfoCount();
 		System.out.println(personInfoCount);

@@ -32,4 +32,12 @@
 		select count(user_id)
 		from tb_person_info
 	</select>
+	
+	<delete id="deleteUser" parameterType="PersonInfo">
+		delete 
+		from tb_person_info
+		<where>
+			<if test="userId != null">and user_id = #{userId}</if>
+		</where>
+	</delete>
 </mapper>

@@ -104,4 +104,11 @@ public class PersonInfoService {
 		// 3.向controller返回数据
 		return pageDivide;
 	}
+	
+	public void removeUser(PersonInfo personInfo) {
+		if(personInfo == null) {
+			throw new LogicException("请增添删除信息");
+		}
+		dao.deleteUser(personInfo);
+	}
 }

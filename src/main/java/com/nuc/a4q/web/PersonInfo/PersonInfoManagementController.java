@@ -67,5 +67,12 @@ public class PersonInfoManagementController {
 		// 3.向前端返回数据
 		return ResultUtil.success(pageDividResult);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="removeUser",method=RequestMethod.GET)
+	public Result removeUser(PersonInfo personInfo) {
+		service.removeUser(personInfo);
+		return ResultUtil.success();
+	}
 
 }

@@ -11,7 +11,7 @@ public class PageUtil {
 	 * @return
 	 */
 	public static Integer getRowStart(Integer currentPage, Integer pageRowCount) {
-		return (pageRowCount - 1) * currentPage;
+		return (currentPage - 1) * pageRowCount;
 	}
 
 	/**
@@ -22,7 +22,7 @@ public class PageUtil {
 	 * @return
 	 */
 	public static Integer getPageCount(Integer rowCount, Integer pageRowCount) {
-		return rowCount / pageRowCount + 1;
+		return (rowCount - 1) / pageRowCount + 1;
 	}
 
 	/**

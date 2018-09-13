@@ -2,9 +2,9 @@ package com.nuc.a4q.entity;
 
 public class PageDivide {
 	private Integer rowCount;// 数据总数量
-	private Integer currentPage = 0;// 当前页数
+	private Integer currentPage = 1;// 当前页数
 	private Integer pageCount;// 页面数量
-	private Integer pageRowCount = 10;// 一页的数据量
+	private Integer pageRowCount = 3;// 一页的数据量
 	private Object entityList;// 用户信息列表
 
 	public Integer getRowCount() {
