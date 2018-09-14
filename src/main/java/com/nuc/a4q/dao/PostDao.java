@@ -2,6 +2,8 @@ package com.nuc.a4q.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.nuc.a4q.entity.Post;
 
 public interface PostDao {
@@ -33,4 +35,13 @@ public interface PostDao {
 	 */
 	public List<Post> queryPostList(Post post);
 	
+	/**
+	 * 获取总量
+	 */
+	public Integer queryPostCount();
+	
+	/**
+	 * 分页查询
+	 */
+	public List<Post> queryPostPageList(@Param(value = "rowStart") Integer rowStart,@Param(value = "rowSize") Integer rowSize,Post post);
 }

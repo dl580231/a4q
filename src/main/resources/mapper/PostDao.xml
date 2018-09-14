@@ -63,6 +63,14 @@
  			<id column="floor_id" property="floorId"/>
  		</association>
  	</resultMap>
+ 	
+ 	<select id="queryPostCount" resultType= "int">
+ 		select count(post_id) from tb_post
+ 	</select>
+ 	
+ 	<select id="queryPostPageList" resultMap="postMap">
+ 		select * from tb_post limit #{rowStart},#{rowSize}
+ 	</select>
 
  </mapper>
  

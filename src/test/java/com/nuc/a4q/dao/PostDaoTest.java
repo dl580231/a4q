@@ -74,6 +74,7 @@ public class PostDaoTest extends BaseTest {
 	}
 	
 	@Test
+	@Ignore
 	public void queryPostListTest() {
 		Post post = new Post();
 		//Course course = new Course();
@@ -83,4 +84,18 @@ public class PostDaoTest extends BaseTest {
 		List<Post> list = postdao.queryPostList(post);
 		System.out.println(list);
 	}
+	
+	@Test
+	@Ignore
+	public void queryPostCountTest() {
+		System.out.println(postdao.queryPostCount());
+	}
+	
+	@Test
+	public void queryPostPageList() {
+		Post post = new Post();
+		List<Post> list = postdao.queryPostPageList(0, 5, post);
+		System.out.println(list.size());
+	}
+	
 }
