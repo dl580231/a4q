@@ -1,7 +1,5 @@
 package com.nuc.a4q.web.PersonInfo;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nuc.a4q.entity.PageDivide;
 import com.nuc.a4q.entity.PersonInfo;
 import com.nuc.a4q.entity.Result;
 import com.nuc.a4q.enums.ResultEnum;
+import com.nuc.a4q.group.Delete;
+import com.nuc.a4q.group.Update;
 import com.nuc.a4q.service.PersonInfoService;
 import com.nuc.a4q.utils.ResultUtil;
 
@@ -27,6 +26,13 @@ public class PersonInfoManagementController {
 	@Autowired
 	private PersonInfoService service;
 
+	/**
+	 * 用户信息注册
+	 * 
+	 * @param personInfo
+	 * @param bindingResult
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "userRegister", method = RequestMethod.POST)
 	public Result userRegister(@RequestBody @Validated PersonInfo personInfo, BindingResult bindingResult) {
@@ -42,6 +48,13 @@ public class PersonInfoManagementController {
 		return ResultUtil.success();
 	}
 
+	/**
+	 * 用户登录认证
+	 * 
+	 * @param personInfo
+	 * @param request
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "loginAuth", method = RequestMethod.POST)
 	public Result loginAuth(@RequestBody PersonInfo personInfo, HttpServletRequest request) {
@@ -53,26 +66,76 @@ public class PersonInfoManagementController {
 		return ResultUtil.success();
 	}
 
+	/**
+	 * 获取用户分页信息
+	 * 
+	 * @param pageDivide
+	 * @param personInfo
+	 * @return
+	 * @throws Exception
+	 */
 	@ResponseBody
 	@RequestMapping(value = "getPersonInfoList", method = RequestMethod.POST)
-	public Result getPersonInfoList(@RequestBody /* (required = true) */ Map<String, Object> jsonMap) throws Exception {
+	public Result getPersonInfoList(PageDivide pageDivide, PersonInfo personInfo) throws Exception {
 		// 1.处理前端传来的数据
-		ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(jsonMap.get("pageDivide")); // 将对象转换成json
-		PageDivide pageDivide = mapper.readValue(json, PageDivide.class);
-		json = mapper.writeValueAsString(jsonMap.get("personInfo")); // 将对象转换成json
-		PersonInfo personInfo = mapper.readValue(json, PersonInfo.class);
+		/*
+		 * ObjectMapper mapper = new ObjectMapper(); String json =
+		 * mapper.writeValueAsString(jsonMap.get("pageDivide")); // 将对象转换成json
+		 * PageDivide pageDivide = mapper.readValue(json, PageDivide.class); json =
+		 * mapper.writeValueAsString(jsonMap.get("personInfo")); // 将对象转换成json
+		 * PersonInfo personInfo = mapper.readValue(json, PersonInfo.class);
+		 */
 		// 2.调用service进行处理
 		PageDivide pageDividResult = service.getPersonInfoList(pageDivide, personInfo);
 		// 3.向前端返回数据
 		return ResultUtil.success(pageDividResult);
 	}
-	
+
+	/**
+	 * 删除用户
+	 * 
+	 * @param personInfo
+	 * @return
+	 */
 	@ResponseBody
-	@RequestMapping(value="removeUser",method=RequestMethod.GET)
-	public Result removeUser(PersonInfo personInfo) {
+	@RequestMapping(value = "removeUser", method = RequestMethod.GET)
+	public Result removeUser(@Validated(value = Delete.class) PersonInfo personInfo, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return ResultUtil.error(ResultEnum.FORM_AUTH_ERROR.getState(),
+					bindingResult.getFieldError().getDefaultMessage());
+		}
 		service.removeUser(personInfo);
 		return ResultUtil.success();
 	}
 
+	/**
+	 * 通过id获取用户信息
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "getUserById", method = RequestMethod.GET)
+	public Result getUserById(Integer userId) {
+		PersonInfo personInfo = service.getUserById(userId);
+		return ResultUtil.success(personInfo);
+	}
+
+	/**
+	 * 更新用户信息
+	 * 
+	 * @param personInfo
+	 * @return
+	 */
+
+	@ResponseBody
+	@RequestMapping(value = "updateUser", method = RequestMethod.POST)
+	public Result updateUser(@Validated(value = Update.class) PersonInfo personInfo, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return ResultUtil.error(ResultEnum.FORM_AUTH_ERROR.getState(),
+					bindingResult.getFieldError().getDefaultMessage());
+		}
+		service.updateUser(personInfo);
+		return ResultUtil.success();
+	}
 }

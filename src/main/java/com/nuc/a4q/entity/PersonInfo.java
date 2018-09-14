@@ -9,6 +9,10 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.nuc.a4q.group.Delete;
+import com.nuc.a4q.group.Insert;
+import com.nuc.a4q.group.Update;
+
 /**
  * 
  * @author DL
@@ -28,22 +32,22 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 public class PersonInfo {
 	private Integer userId;
-	@NotBlank(message = "用户名字不能为空")
+	@NotBlank(message = "用户名字不能为空",groups= {Insert.class,Update.class,Delete.class})
 	private String userName;// 用户的名字
 	private String gender;// 用户性别
 	private String profileImg;// 用户头像地址
-	@NotNull(message = "手机号不能为空")
-	@Pattern(regexp = "^1[\\d]{10}$", message = "电话号码格式有误")
+	@NotNull(message = "手机号不能为空",groups= {Insert.class})
+	@Pattern(regexp = "^1[\\d]{10}$", message = "电话号码格式有误",groups= {Insert.class,Update.class})
 	private String phone;
-	@NotNull(message = "邮箱地址不能为空")
-	@Email(message = "邮箱地址格式出错")
+	@NotNull(message = "邮箱地址不能为空",groups= {Insert.class})
+	@Email(message = "邮箱地址格式出错",groups= {Insert.class,Update.class})
 	private String email;
-	@NotNull(message = "密码不能为空")
-	@Size(min = 6, max = 15, message = "密码为6-15的大小写字母+数字组合")
-	@Pattern(regexp = "[a-z|A-z|0-9]{6,15}", message = "密码为6-15的大小写字母+数字组合")
+	@NotNull(message = "密码不能为空",groups= {Insert.class})
+	@Size(min = 6, max = 15, message = "密码为6-15的大小写字母+数字组合",groups= {Insert.class})
+	@Pattern(regexp = "[a-z|A-z|0-9]{6,15}", message = "密码为6-15的大小写字母+数字组合",groups= {Insert.class})
 	private String password;
-	@NotNull(message = "用户身份不能为空")
-	@Pattern(regexp = "^(学生|老师)$", message = "用户身份输入错误")
+	@NotNull(message = "用户身份不能为空",groups= {Insert.class})
+	@Pattern(regexp = "^(学生|老师)$", message = "用户身份输入错误",groups= {Insert.class,Update.class})
 	private String userType;// 用户身份 :学生 ,老师
 	private String lable;// 用户标签
 	private Date createTime;

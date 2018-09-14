@@ -16,9 +16,9 @@ public interface PersonInfoDao {
 	public Integer insertPersonInfo(PersonInfo personInfo);
 
 	/**
-	 * 根据userId查询用户信息
+	 * 根据属性信息查询用户信息
 	 * 
-	 * @param userId
+	 * @param personInfo
 	 * @return
 	 */
 	public PersonInfo queryPresonInfo(PersonInfo personInfo);
@@ -38,12 +38,20 @@ public interface PersonInfoDao {
 	 * 
 	 * @return
 	 */
-	public Integer queryPersonInfoCount();
-	
+	public Integer queryPersonInfoCount(PersonInfo personInfo);
+
 	/**
 	 * 删除用户信息
+	 * 
 	 * @param personInfo
 	 * @return
 	 */
 	public Integer deleteUser(PersonInfo personInfo);
+
+	/**
+	 * 更新用户信息
+	 * 
+	 * @param personInfo
+	 */
+	public Integer updateUser(PersonInfo personInfo);
 }

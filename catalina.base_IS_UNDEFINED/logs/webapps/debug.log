@@ -1,3 +1,3 @@
-2018-09-256 20:35:37:037 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.insertPersonInfo - ==>  Preparing: insert into tb_person_info(user_name,gender,phone,email,password,user_type,lable,create_time,last_edit_time) values(?,?,?,?,?,?,?,?,?) 
-2018-09-256 20:35:38:038 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.insertPersonInfo - ==> Parameters: 王丹丹(String), 女(String), 150345939083(String), 9577938035@qq.com(String), 580231(String), 学生(String), null, 2018-09-13 20:35:36.968(Timestamp), 2018-09-13 20:35:36.968(Timestamp)
-2018-09-256 20:35:38:038 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.insertPersonInfo - <==    Updates: 1
+2018-09-257 19:03:34:034 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.updateUser - ==>  Preparing: update tb_person_info SET user_name = ?, gender = ?, last_edit_time = ? where user_id=? 
+2018-09-257 19:03:34:034 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.updateUser - ==> Parameters: 三十(String), 男(String), 2018-09-14 19:03:32.944(Timestamp), 1(Integer)
+2018-09-257 19:03:34:034 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.updateUser - <==    Updates: 1

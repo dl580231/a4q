@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.nuc.a4q.dao.PersonInfoDao;
 import com.nuc.a4q.entity.PageDivide;
@@ -15,7 +14,7 @@ import com.nuc.a4q.exception.LogicException;
 import com.nuc.a4q.utils.PageUtil;
 
 @Service
-@Transactional
+/* @Transactional */
 public class PersonInfoService {
 	@Autowired
 	private PersonInfoDao dao;
@@ -92,7 +91,7 @@ public class PersonInfoService {
 		if (pageDivide == null)
 			pageDivide = new PageDivide();
 		// 1.操作数据库
-		Integer rowCount = dao.queryPersonInfoCount();
+		Integer rowCount = dao.queryPersonInfoCount(personInfo);
 		if (rowCount < 1)
 			throw new LogicException("查询数据为空");
 		Integer rowStart = PageUtil.getRowStart(pageDivide.getCurrentPage(), pageDivide.getPageRowCount());
@@ -104,11 +103,30 @@ public class PersonInfoService {
 		// 3.向controller返回数据
 		return pageDivide;
 	}
-	
+
 	public void removeUser(PersonInfo personInfo) {
-		if(personInfo == null) {
+		if (personInfo == null) {
 			throw new LogicException("请增添删除信息");
 		}
 		dao.deleteUser(personInfo);
+	}
+
+	public PersonInfo getUserById(Integer userId) {
+		if (userId == null) {
+			throw new LogicException("查询user信息失败");
+		}
+		PersonInfo personInfo = new PersonInfo();
+		personInfo.setUserId(userId);
+		PersonInfo result = dao.queryPresonInfo(personInfo);
+		if (result == null) {
+			throw new LogicException("用户信息为空");
+		}
+		result.setPassword(null);
+		return result;
+	}
+
+	public void updateUser(PersonInfo personInfo) {
+		personInfo.setLastEditTime(new Date());
+		dao.updateUser(personInfo);
 	}
 }

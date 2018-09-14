@@ -147,11 +147,10 @@
 	background: black !important;
 }
 </style>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
-	<form id="submitForm" name="submitForm" action="" method="post">
-		<input type="hidden" name="allIDCheck" value="" id="allIDCheck" />
-		<input type="hidden" name="fangyuanEntity.fyXqName" value="" id="fyXqName" />
+	<form id="submitForm" name="submitForm" accept-charset="UTF-8" action="" method="post">
 		<div id="container">
 			<div class="ui_content">
 				<div class="ui_text_indent">
@@ -159,27 +158,27 @@
 						<div id="box_top">搜索</div>
 						<div id="box_center">
 							用户名：
-							<input id="userName" class="ui_select01">
+							<input id="userName" name="userName" class="ui_select01">
 							性别：
-							<select id="gender" class="ui_select01">
+							<select id="gender" name="gender" class="ui_select01">
                                 <option value="">--请选择--</option>
                                 <option value="男">男生</option>
                                 <option value="女">女生</option>
                             </select>
                                                                         手机号:
-                            <input id="phone" class="ui_select01">
+                            <input id="phone" name="phone" class="ui_select01">
                             	邮箱地址:
-                            <input id="email" class="ui_select01">
+                            <input id="email" name="email" class="ui_select01">
 							身份：
-							<select id="userType" class="ui_select01">
+							<select id="userType" name="userType" class="ui_select01">
                                 <option value="">--请选择--</option>
-                                <option value="教师">教师</option>
+                                <option value="老师">老师</option>
                                 <option value="学生">学生</option>
                             </select>
 							
 						
 						<div id="box_bottom">
-							<input type="button" value="查询" class="ui_input_btn01" onclick="search()" /> 
+							<input type="button" value="查询" class="ui_input_btn01" onclick="search(1)" /> 
 							<input type="button" value="新增" class="ui_input_btn01" id="addBtn" /> 
 							<input type="button" value="删除" class="ui_input_btn01" onclick="batchDel()" /> 
 						</div>
@@ -207,10 +206,6 @@
 							<input type="button" id="after-page" value="下一页" class="page-control ui_input_btn01" onclick="afterPage()"/> 
 							<input type="button" id="last-page" value="尾页" class="page-control ui_input_btn01" onclick="lastPage()"/>
 							
-							<!--     如果是最后一页，则只显示首页、上一页 -->
-							<!-- <span calss="page-control">转到第<input type="text" id="jumpNumTxt" class="ui_input_txt01" />页
-							<input type="button" class="ui_input_btn01" value="跳转"
-								onclick="jumpInputPage(9);" /></span> -->
 						</div>
 					</div>
 				</div>
@@ -218,5 +213,6 @@
 	</form>
 	
 	<script type="text/javascript" charset="utf-8" src="js/pageDivide/user.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/common/common.js"></script>
 </body>
 </html>
