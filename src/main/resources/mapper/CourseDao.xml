@@ -4,18 +4,18 @@
  <mapper namespace="com.nuc.a4q.dao.CourseDao">
  	<insert id="insertCourse" parameterType="Course">
  		insert into
- 		tb_course(moderator_id,course_name,priority,create_time,last_edit_time)
- 		values(#{moderator.userId},#{courseName},#{priority},#{createTime},#{lastEditTime})
+ 		tb_course(course_name,priority,create_time,last_edit_time)
+ 		values(#{courseName},#{priority},#{createTime},#{lastEditTime})
  	</insert>
  	
  	<update id="updateCourse" parameterType="Course">
  		update tb_course
 		<set>
-			<if test="moderator!=null">moderator_id=#{moderator.userId},</if>
-			<if test="courseName!=null">course_name=#{courseName},</if>
-			<if test="priority!=null">priority=#{priority},</if>
-			<if test="createTime!=null">create_time=#{createTime},</if>
-			<if test="lastEditTime!=null">last_edit_time=#{lastEditTime},</if>
+			<if test="moderator != null and moderator.userId != null">moderator_id=#{moderator.userId},</if>
+			<if test="courseName != null">course_name=#{courseName},</if>
+			<if test="priority != null">priority=#{priority},</if>
+			<if test="createTime != null">create_time=#{createTime},</if>
+			<if test="lastEditTime != null">last_edit_time=#{lastEditTime},</if>
 		</set>
 		where course_id=#{courseId}
  	</update>
@@ -47,5 +47,16 @@
  			<result column="user_name" property="userName"/>
  		</association>
  	</resultMap>
+ 	
+ 	<select id="queryCourseListName" resultType="Course">
+ 		select course_id,course_name
+ 		from tb_course
+ 	</select>
+ 	
+ 	<select id="getCourseByCourseName" resultType="int">
+ 		select course_id
+ 		from tb_course
+ 		where course_name = #{courseName}
+ 	</select>
  </mapper>
  

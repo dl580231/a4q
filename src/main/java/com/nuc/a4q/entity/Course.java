@@ -20,10 +20,20 @@ package com.nuc.a4q.entity;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+import com.nuc.a4q.group.Delete;
+import com.nuc.a4q.group.Insert;
+import com.nuc.a4q.group.Update;
+
 public class Course {
+	@NotNull(message = "课程信息的id为空", groups = { Delete.class, Update.class })
 	private Integer courseId;
 	private PersonInfo moderator;// 版主
-	private String courseName;
+	@NotBlank(message = "课程名称不能为空", groups = { Update.class, Insert.class })
+	private String courseName;//这里还需要用正则表达式验证格式
 	private Integer priority;
 	private Date createTime;
 	private Date lastEditTime;

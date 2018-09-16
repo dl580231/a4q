@@ -3,6 +3,10 @@ $(function() {
 	$("#submitUpdate").click(function() {
 		submitUpdate();
 	});
+	
+	$("#cancel").click(function(){
+		window.location.href = "user.html";
+	});
 });
 
 function initUserInfo() {

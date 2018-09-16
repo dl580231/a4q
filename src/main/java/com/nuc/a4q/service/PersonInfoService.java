@@ -119,7 +119,7 @@ public class PersonInfoService {
 		personInfo.setUserId(userId);
 		PersonInfo result = dao.queryPresonInfo(personInfo);
 		if (result == null) {
-			throw new LogicException("用户信息为空");
+			throw new LogicException("该用户不存在");
 		}
 		result.setPassword(null);
 		return result;

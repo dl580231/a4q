@@ -31,6 +31,7 @@ import com.nuc.a4q.group.Update;
  * 
  */
 public class PersonInfo {
+	@Pattern(regexp="^(\\d)+$",message="用户ID格式匹配错误",groups= {Update.class})
 	private Integer userId;
 	@NotBlank(message = "用户名字不能为空",groups= {Insert.class,Update.class,Delete.class})
 	private String userName;// 用户的名字

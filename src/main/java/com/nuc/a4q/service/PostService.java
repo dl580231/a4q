@@ -3,17 +3,17 @@ package com.nuc.a4q.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.nuc.a4q.entity.PageDivide;
+import com.nuc.a4q.dao.PostDao;
 import com.nuc.a4q.entity.Post;
-import com.nuc.a4q.exception.LogicException;
-import com.nuc.a4q.utils.PageUtil;
-import com.nuc.a4q.dao.*;
 
+@Service
 public class PostService {
 	@Autowired
 	private PostDao dao;
-	
+
 	/**
 	 * 删除帖子
 	 * 
@@ -21,23 +21,48 @@ public class PostService {
 	 * @throws Exception
 	 */
 	public void deletePost(Post post) {
-		
+
 	}
+
 	/**
-	 * 分页查询
+	 * 查询帖子信息
 	 */
-	public PageDivide queryPostPageList(PageDivide pageDivide, Post post) {
-		if(pageDivide == null)
-			pageDivide = new PageDivide();
-		Integer rowCount = dao.queryPostCount();
-		if(rowCount<1)
-			throw new LogicException("查询数据为空");
-		Integer rowStart = PageUtil.getRowStart(pageDivide.getCurrentPage(), pageDivide.getPageRowCount());
-		if(rowStart>rowCount)
-			throw new LogicException("查询数据为空");
-		List<Post> list = dao.queryPostPageList(rowStart, pageDivide.getPageRowCount(), post);
-		PageUtil.buildPageDivide(pageDivide, rowCount, pageDivide.getPageRowCount(), list);
-		return pageDivide;
+	public List<Post> queryPostList(Post post) {
+		List<Post> list = dao.queryPostList(post);
+		return list;
 	}
-	
+
+	/**
+	 * 删除用户信息
+	 * 
+	 * @param postId
+	 */
+	public void removePost(Post post) {
+		dao.deletePost(post);
+	}
+
+	/**
+	 * 帖子置顶操作
+	 * 
+	 * @param post
+	 */
+	@Transactional
+	public void topPost(Post post) {
+		Integer minPriority = dao.queryMinPriority();
+		post.setPriority(minPriority - 1);
+		dao.updatePost(post);
+	}
+
+	/**
+	 * 帖子置底操作
+	 * 
+	 * @param post
+	 */
+	@Transactional // 这里加上事务，解决不可重复读问题
+	public void bottomPost(Post post) {
+		Integer maxPriority = dao.queryMaxPriority();
+		post.setPriority(maxPriority + 1);
+		dao.updatePost(post);
+	}
+
 }

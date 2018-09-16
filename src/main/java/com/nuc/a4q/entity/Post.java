@@ -26,11 +26,17 @@ package com.nuc.a4q.entity;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import com.nuc.a4q.group.Delete;
+import com.nuc.a4q.group.Update;
+
 public class Post {
+	@NotNull(message = "用户ID为空", groups = { Delete.class, Update.class })
 	private Integer postId;
 	private Course course;
 	private PersonInfo deployUser;
-	private Floor bestAnswer;
+	private Integer bestAnswerId;
 	private String postTitle;
 	private String postContent;
 	private Integer priority;
@@ -65,20 +71,12 @@ public class Post {
 		this.deployUser = deployUser;
 	}
 
-	public Floor getBestAnswer() {
-		return bestAnswer;
-	}
-
 	public String getPostTitle() {
 		return postTitle;
 	}
 
 	public void setPostTitle(String postTitle) {
 		this.postTitle = postTitle;
-	}
-
-	public void setBestAnswer(Floor bestAnswer) {
-		this.bestAnswer = bestAnswer;
 	}
 
 	public String getPostContent() {
@@ -121,10 +119,18 @@ public class Post {
 		this.lastEditTime = lastEditTime;
 	}
 
+	public Integer getBestAnswerId() {
+		return bestAnswerId;
+	}
+
+	public void setBestAnswerId(Integer bestAnswerId) {
+		this.bestAnswerId = bestAnswerId;
+	}
+
 	@Override
 	public String toString() {
-		return "Post [postId=" + postId + ", course=" + course + ", deployUser=" + deployUser + ", bestAnswer="
-				+ bestAnswer + ", postTitle=" + postTitle + ", postContent=" + postContent + ", priority=" + priority
+		return "Post [postId=" + postId + ", course=" + course + ", deployUser=" + deployUser + ", bestAnswerId="
+				+ bestAnswerId + ", postTitle=" + postTitle + ", postContent=" + postContent + ", priority=" + priority
 				+ ", enableView=" + enableView + ", createTime=" + createTime + ", lastEditTime=" + lastEditTime + "]";
 	}
 

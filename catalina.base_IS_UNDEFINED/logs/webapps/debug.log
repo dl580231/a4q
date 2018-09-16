@@ -1,3 +1,6 @@
-2018-09-257 19:03:34:034 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.updateUser - ==>  Preparing: update tb_person_info SET user_name = ?, gender = ?, last_edit_time = ? where user_id=? 
-2018-09-257 19:03:34:034 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.updateUser - ==> Parameters: 三十(String), 男(String), 2018-09-14 19:03:32.944(Timestamp), 1(Integer)
-2018-09-257 19:03:34:034 [main] DEBUG com.nuc.a4q.dao.PersonInfoDao.updateUser - <==    Updates: 1
+2018-09-259 22:17:31:031 [main] DEBUG com.nuc.a4q.dao.CourseDao.getCourseByCourseName - ==>  Preparing: select course_id from tb_course where course_name = ? 
+2018-09-259 22:17:31:031 [main] DEBUG com.nuc.a4q.dao.CourseDao.getCourseByCourseName - ==> Parameters: 离散数学(String)
+2018-09-259 22:17:32:032 [main] DEBUG com.nuc.a4q.dao.CourseDao.getCourseByCourseName - <==      Total: 1
+2018-09-259 22:17:45:045 [main] DEBUG com.nuc.a4q.dao.CourseDao.getCourseByCourseName - ==>  Preparing: select course_id from tb_course where course_name = ? 
+2018-09-259 22:17:45:045 [main] DEBUG com.nuc.a4q.dao.CourseDao.getCourseByCourseName - ==> Parameters: 离散(String)
+2018-09-259 22:17:45:045 [main] DEBUG com.nuc.a4q.dao.CourseDao.getCourseByCourseName - <==      Total: 0
