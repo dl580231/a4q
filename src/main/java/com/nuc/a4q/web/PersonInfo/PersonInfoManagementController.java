@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,9 +14,13 @@ import com.nuc.a4q.entity.PageDivide;
 import com.nuc.a4q.entity.PersonInfo;
 import com.nuc.a4q.entity.Result;
 import com.nuc.a4q.enums.ResultEnum;
+import com.nuc.a4q.exception.LogicException;
 import com.nuc.a4q.group.Delete;
+import com.nuc.a4q.group.Insert;
+import com.nuc.a4q.group.LoginAuth;
 import com.nuc.a4q.group.Update;
 import com.nuc.a4q.service.PersonInfoService;
+import com.nuc.a4q.utils.CodeUtils;
 import com.nuc.a4q.utils.ResultUtil;
 
 @Controller
@@ -35,11 +38,16 @@ public class PersonInfoManagementController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "userRegister", method = RequestMethod.POST)
-	public Result userRegister(@RequestBody @Validated PersonInfo personInfo, BindingResult bindingResult) {
+	public Result userRegister(@Validated(Insert.class) PersonInfo personInfo, BindingResult bindingResult,HttpServletRequest request) {
 		// 0.表单验证
 		if (bindingResult.hasErrors()) {
 			return ResultUtil.error(ResultEnum.FORM_AUTH_ERROR.getState(),
 					bindingResult.getFieldError().getDefaultMessage());
+		}
+		
+		boolean verifyCodeResult = CodeUtils.checkVerifyCode(request);
+		if (!verifyCodeResult) {
+			throw new LogicException("验证码错误，请重新输入");
 		}
 		// 1.接受参数
 		// 2.调用service层
@@ -57,8 +65,12 @@ public class PersonInfoManagementController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "loginAuth", method = RequestMethod.POST)
-	public Result loginAuth(@RequestBody PersonInfo personInfo, HttpServletRequest request) {
-		// 1.接受参数
+	public Result loginAuth(@Validated(LoginAuth.class) PersonInfo personInfo, BindingResult result,
+			HttpServletRequest request) {
+		// 1.判断参数
+		if (result.hasErrors()) {
+			return ResultUtil.error(result.getFieldError().getDefaultMessage());
+		}
 		// 2.调用service层
 		PersonInfo user = service.loginAuth(personInfo);
 		request.getSession().setAttribute("user", user);

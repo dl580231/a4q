@@ -8,8 +8,8 @@
 		from tb_floor f,tb_person_info p
 		<where>
 			<if test="postId != null">and post_id = #{postId}</if>
-			<if test="user !=null and user.userId != null">and user_id = #{user.userId}</if>
-			<if test="floorContent != null">and floor_content like CONCAT('%',#{floorContent},'%')
+			<if test="user !=null and user.userId != null">and f.user_id = #{user.userId}</if>
+			<if test="floorContent != null and floorContent != ''">and floor_content like CONCAT('%',#{floorContent},'%')
 			</if>
 			<if test="createTime != null">and f.create_time= #{createTime}</if>
 			<if test="lastEditTime != null">and f.last_edit_time = #{lastEditTime}</if>
@@ -35,15 +35,24 @@
 		values(#{postId},#{user.userId},#{floorContent},#{createTime},#{lastEditTime})
 	</insert>
 
-	<delete id="deleteFloor" parameterType="int">
+	<delete id="deleteFloor" parameterType="Floor">
 		delete
 		from tb_floor
 		<where>
-			<if test="postId != null">post_id = #{postId}</if>
-			<if test="user != null and user.userId != null">user_id = #{user.userId}</if>
-			<if test="floorContent != null">floor_content like CONCAT("%",#{floorContent},"%")</if>
-			<if test="createTime != null">create_time = createTime = #{createTime}</if>
-			<if test="lastEditTime != null">last_edit_time = #{lastEditTime}</if>
+			<!-- 目前这样做是为了误删数据库 -->
+			and floor_id = #{floorId}
+			<if test="postId != null">and post_id = #{postId}</if>
+			<if test="user != null and user.userId != null">and user_id = #{user.userId}</if>
+			<if test="floorContent != null">and floor_content like CONCAT("%",#{floorContent},"%")
+			</if>
+			<if test="createTime != null">and create_time = createTime = #{createTime}</if>
+			<if test="lastEditTime != null">and last_edit_time = #{lastEditTime}</if>
 		</where>
 	</delete>
+	
+	<select id="getFloorCountByPostId" resultType="int" parameterType="int">
+		SELECT COUNT(floor_id)
+		FROM tb_floor
+		WHERE post_id = #{postId}
+	</select>
 </mapper>

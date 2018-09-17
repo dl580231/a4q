@@ -19,6 +19,7 @@ import com.nuc.a4q.group.Insert;
 import com.nuc.a4q.group.Update;
 import com.nuc.a4q.service.CourseService;
 import com.nuc.a4q.service.PersonInfoService;
+import com.nuc.a4q.service.PostService;
 import com.nuc.a4q.utils.ResultUtil;
 
 @Controller
@@ -28,6 +29,8 @@ public class CourseManagementController {
 	private CourseService service;
 	@Autowired
 	private PersonInfoService userService;
+	@Autowired
+	private PostService postService;
 
 	/**
 	 * 获取所有的课程名称
@@ -74,6 +77,7 @@ public class CourseManagementController {
 
 	/**
 	 * 更新课程信息
+	 * 
 	 * @param moderatorId
 	 * @param course
 	 * @param result
@@ -97,14 +101,28 @@ public class CourseManagementController {
 		service.updateCourse(course);
 		return ResultUtil.success();
 	}
-	
+
+	/**
+	 * 增加课程信息
+	 * 
+	 * @param course
+	 * @param result
+	 * @return
+	 */
 	@ResponseBody
-	@RequestMapping(value="addCourse",method=RequestMethod.POST)
-	public Result addCourse(@Validated(Insert.class)Course course,BindingResult result) {
-		if(result.hasErrors()) {
+	@RequestMapping(value = "addCourse", method = RequestMethod.POST)
+	public Result addCourse(@Validated(Insert.class) Course course, BindingResult result) {
+		if (result.hasErrors()) {
 			throw new LogicException(result.getFieldError().getDefaultMessage());
 		}
 		service.addCourse(course);
 		return ResultUtil.success();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="getPostCountByCourseId",method=RequestMethod.GET)
+	public Result getPostCountByCourseId(Integer courseId) {
+		Integer count = postService.getPostCountByCourseId(courseId);
+		return ResultUtil.success(count);
 	}
 }

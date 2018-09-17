@@ -29,4 +29,11 @@ public interface FloorDao {
 	 */
 	public Integer deleteFloor(Floor floor);
 
+	/**
+	 * 查询指定postId的楼信息数量
+	 * 
+	 * @param podtId
+	 * @return
+	 */
+	public Integer getFloorCountByPostId(Integer postId);
 }

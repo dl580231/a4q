@@ -2,6 +2,10 @@ package com.nuc.a4q.entity;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import com.nuc.a4q.group.Delete;
+
 /**
  * 
  * @author lenovo
@@ -19,6 +23,7 @@ import java.util.Date;
  * 
  */
 public class Floor {
+	@NotNull(message="楼ID不能为空",groups= {Delete.class})
 	private Integer floorId;
 	private Integer postId;
 	private PersonInfo user;

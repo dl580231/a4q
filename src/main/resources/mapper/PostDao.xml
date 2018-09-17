@@ -102,5 +102,11 @@
 		SELECT MAX(priority)
  		FROM tb_post
 	</select>
+	
+	<select id="getPostCountByCourseId" parameterType="int" resultType="int">
+		select COUNT(post_id)
+		from tb_post
+		where course_id = #{courseId}
+	</select>
 </mapper>
  

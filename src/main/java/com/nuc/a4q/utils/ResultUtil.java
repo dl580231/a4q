@@ -16,9 +16,16 @@ public class ResultUtil {
 		return success(null);
 	}
 
-	public static <T> Result error(Integer state, String stateInfo) {
+	public static Result error(Integer state, String stateInfo) {
 		Result result = new Result();
 		result.setState(state);
+		result.setStateInfo(stateInfo);
+		return result;
+	}
+	
+	public static Result error(String stateInfo) {
+		Result result = new Result();
+		result.setState(400);
 		result.setStateInfo(stateInfo);
 		return result;
 	}

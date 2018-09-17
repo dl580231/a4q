@@ -64,5 +64,12 @@ public class PostService {
 		post.setPriority(maxPriority + 1);
 		dao.updatePost(post);
 	}
-
+	
+	/**
+	 * 根据课程ID
+	 * @param courseId
+	 */
+	public Integer getPostCountByCourseId(Integer courseId) {
+		return dao.getPostCountByCourseId(courseId);
+	}
 }

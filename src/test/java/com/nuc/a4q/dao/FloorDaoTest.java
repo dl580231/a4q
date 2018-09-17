@@ -23,14 +23,13 @@ public class FloorDaoTest extends BaseTest {
 	}
 
 	@Test
-	@Ignore
 	public void insertFloor() {
 		Floor floor = new Floor();
 		PersonInfo personInfo = new PersonInfo();
-		personInfo.setUserId(1);
+		personInfo.setUserId(16);
 		floor.setUser(personInfo);
-		floor.setPostId(1);
-		floor.setFloorContent("demodemo");
+		floor.setPostId(13);
+		floor.setFloorContent("JavaJavaJavaJavaJavaJavaJavaJavaJavaJavaJavaJavaJava");
 		floor.setCreateTime(new Date());
 		floor.setLastEditTime(new Date());
 		Integer insertFloor = dao.insertFloor(floor);
@@ -38,11 +37,11 @@ public class FloorDaoTest extends BaseTest {
 	}
 	
 	@Test
-	/*@Ignore*/
+	@Ignore
 	public void deleteFloor() {
 		Floor floor = new Floor();
-		floor.setFloorContent("remove");
-		Integer ressult = dao.deleteFloor(floor);
-		System.out.println(ressult);
+		floor.setFloorId(11);
+		Integer result = dao.deleteFloor(floor);
+		System.out.println(result);
 	}
 }

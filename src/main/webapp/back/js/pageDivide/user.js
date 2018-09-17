@@ -45,6 +45,7 @@ function search(currentPageLocal) {
 				url : queryUserUrl,
 				type : "post",
 				data : data,
+				cache : false,
 				success : function(data) {
 					if (data.state == 0) {
 						var pageDivide = data.data;

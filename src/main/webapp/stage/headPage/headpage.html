@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="keywords" content="答疑网,在线答疑,简单学习答疑网">
+		<meta name="description"
+			content="简单学习答疑网是国内专业的在线答疑辅导网站.简单学习答疑网在线解答高中、初中的各科学习问题,包括在线解答、答案、试题、练习题、课程、专题知识点总结等为学生免费在线答疑帮助学生解决学习困惑.学习有问题,就上简单学习答疑网">
+			<meta name="baidu-site-verification" content="t91R9fcJTl">
+				<title>简单学习答疑网</title>
+				<link href="css/base.css" rel="stylesheet" type="text/css">
+					<link href="css/common_qa.css" rel="stylesheet" type="text/css">
+						<link href="css/common.css" rel="stylesheet" type="text/css">
+							<link href="css/qa.css?20170726" rel="stylesheet" type="text/css">
+								<script type="text/javascript"
+									src="https://vip.jd100.com/js/et.js"></script>
+								<!-- 切换的js文件 -->
+								<script type="text/javascript"
+									src="https://vip.jd100.com/js/etsrc/other/other.js"></script>
+</head>
+
+<body>
+	<div id="qaTop">
+		<div class="qatop clearfix">
+			<h1 class="left mt5">
+				<span>简单学习答疑网</span><a href="https://dayi.jd100.com/"></a>
+			</h1>
+			<ul class="qatop_nav qatop_sub left">
+				<li class="nav_hover"><a href="https://dayi.jd100.com/">首页</a></li>
+				<li><a href="https://vip.jd100.com/studycenter/?from=bottombar"
+					target="_blank">个人中心</a></li>
+			</ul>
+			<ul class="qatop_person qatop_sub right">
+				<li><a href="../login.html" title="师生答疑网登录">登录</a></li>
+				<li><a href="../register.html" title="师生答疑网注册">注册</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="container" class="qaCon">
+		<div class="search qafilet">
+			<div class="search_box">
+				<form id="submitForm">
+					<span class="search_input"><input type="text" id="word" name="searchWord" tabindex="1" maxlength="256" size="60"
+						value="请输入搜索内容……" class="hidevalue"></span> 
+						<input type="button" tabindex="2" value="我要搜索" onclick="" class="sec_search search_btn qabg"> 
+						<input type="button" tabindex="3" value="我要提问" onclick="ask();" class="sec_ask search_btn qabg">
+				</form>
+			</div>
+			<div class="search_key">
+				热门搜索：<a href="javascript:hot_search('高一数学');">高一数学</a>
+			</div>
+		</div>
+
+
+
+
+		<div id="content">
+			<div class="sidebar190 sbar_grade left">
+				<h3 class="f14px fb sbar_til sbar_til190_blue qafilet">问题分类</h3>
+				<div class="sbar_gray">
+					<h4 class="sbar_grade_h4 mart20">
+						<span>选择学科</span>
+					</h4>
+					<div class="sbar_subject_list" id="courseInfo">
+						<dl>
+							<dt>
+								<a href="https://dayi.jd100.com/g3_9_0_1/">政治</a>
+							</dt>
+						</dl>
+					</div>
+				</div>
+				<span class="sFillet ht5 qafilet fillet190_gray_b"></span>
+			</div>
+			<div class="main590 left">
+				<div class="main590_wrap">
+					<ul class="tab tabTag_qa clearfix">
+						<li onclick="setTab('qa',0);" class="curTag">已解决问题</li>
+						<li onclick="setTab('qa',1);">待解决问题</li>
+					</ul>
+					<div class="tabCon_qa">
+						<div class="m_qalist latestQa">
+							<div class="tabCon_solve mart10">
+								<div class="qa_solve_tec">
+									<table summary="所有已解决问题">
+										<tbody>
+											<tr class="tr_boeder">
+												<th class="textleft">问题</th>
+												<th width="12%">提问时间</th>
+												<th width="20%">提问者</th>
+											</tr>
+
+
+											<tr>
+												<td class="qaTitle"><span><a
+														href="https://dayi.jd100.com/question/4240953/"
+														target="_blank" class="qaTitle_link"
+														style="cursor: pointer; display: block;">老师你说如果像课程这样给我指出大…</a></span>[<a
+													href="https://dayi.jd100.com/g2_5_409_1/" target="_blank">不确定</a>]</td>
+												<td>7分钟前</td>
+												<td class="qa_askname"><a
+													href="https://dayi.jd100.com/user/A13470497677/"
+													target="_blank">A13470497677</a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="m_qalist latestQa hidden">
+							<div class="tabCon_unsolve mart10">
+								<div class="qa_unsolve_all">
+									<table summary="所有待解决问题">
+										<tbody>
+											<tr class="tr_boeder">
+												<th class="textleft">问题</th>
+												<th width="12%">提问时间</th>
+												<th width="20%">提问者</th>
+											</tr>
+											<tr>
+												<td class="qaTitle"><span><a
+														href="https://dayi.jd100.com/question/4240962/"
+														target="_blank" class="qaTitle_link"
+														style="cursor: pointer; display: block;">老师能发给我所有带有“非常地，极…</a></span>[<a
+													href="https://dayi.jd100.com/g1_5_571_1/" target="_blank">不确定</a>]</td>
+												<td>0分钟前</td>
+												<td class="qa_askname"><a
+													href="https://dayi.jd100.com/user/ifohloni/"
+													target="_blank">ifohloni</a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<ul class="tab tabTag_qa mart10 clearfix">
+						<li onclick="setTab('qa_v',0);" class="curTag">精选问题</li>
+					</ul>
+					<div class="tabCon_qa">
+						<div class="m_qalist latestQa">
+							<table summary="精选问题">
+								<tbody>
+									<tr class="tr_boeder">
+										<th class="textleft">问题</th>
+										<th width="12%">解答时间</th>
+										<th width="20%">回答者</th>
+									</tr>
+									<tr>
+										<td class="qaTitle"><span><a
+												href="https://dayi.jd100.com/question/4065553/"
+												target="_blank" class="qaTitle_link"
+												style="cursor: pointer; display: block;">可不可以由GH平行于ACD，而c…</a></span>[<a
+											href="https://dayi.jd100.com/g1_1_523_1/" target="_blank">立体几何</a>]</td>
+										<td>2018-06-09</td>
+										<td class="qa_askname">
+											<div class="left">
+												<a href="https://dayi.jd100.com/user/teacherzhaoning1/"
+													target="_blank">teacherzhaoning1</a>
+											</div> <img
+											src="https://img.jiandan100.cn/images/qa/teacher_flag.gif"
+											alt="简单学习网认证答疑老师" title="简单学习网认证答疑老师" class="right">
+										</td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sidebar190 right">
+
+
+				<div class="sbar_charts mart10">
+					<h3 class="fb sbar_til sbar_til190 qafilet">
+						<span>回答排行榜</span>
+					</h3>
+					<ul class="tag2 tag2_red tabTag_rank clearfix">
+						<li onclick="setTab('rank',0);">月</li>
+						<li onclick="setTab('rank',1);">周</li>
+						<li onclick="setTab('rank',2);" class="curTag">日</li>
+					</ul>
+					<div class="sbar_gray tabCon_rank">
+						<ul class="hidden">
+							<!-- 月 -->
+							<li class="s_c_list l_1"><span><a
+									href="https://dayi.jd100.com/user/F1926498520/">F1926498520</a></span>
+								<em>526</em></li>
+							<li class="s_c_list l_2"><span><a
+									href="https://dayi.jd100.com/user/lyx13883531776/">lyx13883531776</a></span>
+								<em>333</em></li>
+							<li class="s_c_list l_3"><span><a
+									href="https://dayi.jd100.com/user/jzzt001/">jzzt001</a></span> <em>315</em>
+							</li>
+							<li class="s_c_list l_4"><span><a
+									href="https://dayi.jd100.com/user/ml686/">ml686</a></span> <em>314</em>
+							</li>
+							<li class="s_c_list l_5"><span><a
+									href="https://dayi.jd100.com/user/psy985/">psy985</a></span> <em>288</em>
+							</li>
+							<li class="s_c_list l_6"><span><a
+									href="https://dayi.jd100.com/user/a15835017485/">a15835017485</a></span>
+								<em>283</em></li>
+							<li class="s_c_list l_7"><span><a
+									href="https://dayi.jd100.com/user/zgzxgxc160901/">zgzxgxc160901</a></span>
+								<em>255</em></li>
+							<li class="s_c_list l_8"><span><a
+									href="https://dayi.jd100.com/user/yaoshiyan35027/">yaoshiyan35027</a></span>
+								<em>233</em></li>
+							<li class="s_c_list l_9"><span><a
+									href="https://dayi.jd100.com/user/renyongxi/">renyongxi</a></span> <em>232</em>
+							</li>
+							<li class="s_c_list l_10"><span><a
+									href="https://dayi.jd100.com/user/j531232/">j531232</a></span> <em>225</em>
+							</li>
+						</ul>
+						<ul class="hidden">
+							<!-- 周 -->
+							<li class="s_c_list l_1"><span><a
+									href="https://dayi.jd100.com/user/beijingboy/">beijingboy</a></span> <em>204</em>
+							</li>
+							<li class="s_c_list l_2"><span><a
+									href="https://dayi.jd100.com/user/sssz1608/">sssz1608</a></span> <em>77</em>
+							</li>
+							<li class="s_c_list l_3"><span><a
+									href="https://dayi.jd100.com/user/hjyi151/">hjyi151</a></span> <em>73</em>
+							</li>
+							<li class="s_c_list l_4"><span><a
+									href="https://dayi.jd100.com/user/F1926498520/">F1926498520</a></span>
+								<em>71</em></li>
+							<li class="s_c_list l_5"><span><a
+									href="https://dayi.jd100.com/user/scnjchu0093/">scnjchu0093</a></span>
+								<em>70</em></li>
+							<li class="s_c_list l_6"><span><a
+									href="https://dayi.jd100.com/user/longraocz2/">longraocz2</a></span> <em>67</em>
+							</li>
+							<li class="s_c_list l_7"><span><a
+									href="https://dayi.jd100.com/user/zgzxgxc160901/">zgzxgxc160901</a></span>
+								<em>66</em></li>
+							<li class="s_c_list l_8"><span><a
+									href="https://dayi.jd100.com/user/zhangziqiang189/">zhangziqiang189</a></span>
+								<em>65</em></li>
+							<li class="s_c_list l_9"><span><a
+									href="https://dayi.jd100.com/user/jkjkjkjkjkll/">jkjkjkjkjkll</a></span>
+								<em>64</em></li>
+							<li class="s_c_list l_10"><span><a
+									href="https://dayi.jd100.com/user/acqkmsux/">acqkmsux</a></span> <em>56</em>
+							</li>
+						</ul>
+						<ul>
+							<!-- 日 -->
+							<li class="s_c_list l_1"><span><a
+									href="https://dayi.jd100.com/user/scnjchu0093/">scnjchu0093</a></span>
+								<em>19</em></li>
+							<li class="s_c_list l_2"><span><a
+									href="https://dayi.jd100.com/user/szm13959703510/">szm13959703510</a></span>
+								<em>17</em></li>
+							<li class="s_c_list l_3"><span><a
+									href="https://dayi.jd100.com/user/wen0120/">wen0120</a></span> <em>10</em>
+							</li>
+							<li class="s_c_list l_4"><span><a
+									href="https://dayi.jd100.com/user/panchungeng/">panchungeng</a></span>
+								<em>10</em></li>
+							<li class="s_c_list l_5"><span><a
+									href="https://dayi.jd100.com/user/yqmaomao77/">yqmaomao77</a></span> <em>10</em>
+							</li>
+							<li class="s_c_list l_6"><span><a
+									href="https://dayi.jd100.com/user/zhaojunyaoa/">zhaojunyaoa</a></span>
+								<em>9</em></li>
+							<li class="s_c_list l_7"><span><a
+									href="https://dayi.jd100.com/user/gftswd/">gftswd</a></span> <em>9</em>
+							</li>
+							<li class="s_c_list l_8"><span><a
+									href="https://dayi.jd100.com/user/yangkaibo88mman/">yangkaibo88mman</a></span>
+								<em>8</em></li>
+							<li class="s_c_list l_9"><span><a
+									href="https://dayi.jd100.com/user/eergu13/">eergu13</a></span> <em>8</em>
+							</li>
+							<li class="s_c_list l_10"><span><a
+									href="https://dayi.jd100.com/user/gch041128/">gch041128</a></span> <em>8</em>
+							</li>
+						</ul>
+					</div>
+					<span class="sFillet ht5 qafilet fillet190_b"></span>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" charset="utf-8" src="../resources/js/jquery/jquery-1.7.1.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/headPage.js"></script>
+</body>
+</html>

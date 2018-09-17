@@ -58,7 +58,9 @@
 		<set>
 			<if test="userName != null and userName != ''">user_name = #{userName},</if>
 			<if test="gender != null">gender = #{gender},</if>
+			<if test="password != null and password != ''">password = #{password},</if>
 			<if test="profileImg != null and profileImg != ''">profile_img = #{profileImg},</if>
+			<if test="userType != null and userType != ''">user_type = #{userType},</if>
 			<if test="phone != null and phone != ''">phone = #{phone},</if>
 			<if test="email != null and email != ''">email = #{email},</if>
 			<if test="lastEditTime != null">last_edit_time = #{lastEditTime},</if>

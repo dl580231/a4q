@@ -43,9 +43,8 @@ public class PersonInfoService {
 	 * @throws Exception
 	 */
 	public PersonInfo loginAuth(PersonInfo personInfo) {
-		if (personInfo == null || personInfo.getPassword() == null
-				|| (personInfo.getPhone() == null && personInfo.getEmail() == null)) {
-			throw new LogicException("用户名或密码不能为空");
+		if (personInfo == null || (personInfo.getPhone() == null && personInfo.getEmail() == null)) {
+			throw new LogicException("用户名不能为空");
 		}
 		PersonInfo info = dao.queryPresonInfo(personInfo);
 		if (info == null) {
@@ -121,7 +120,6 @@ public class PersonInfoService {
 		if (result == null) {
 			throw new LogicException("该用户不存在");
 		}
-		result.setPassword(null);
 		return result;
 	}
 
