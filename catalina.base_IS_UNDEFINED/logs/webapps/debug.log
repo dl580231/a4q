@@ -1,3 +1,3 @@
-2018-09-260 11:47:04:004 [main] DEBUG com.nuc.a4q.dao.FloorDao.insertFloor - ==>  Preparing: insert into tb_floor(post_id,user_id,floor_content,create_time,last_edit_time) values(?,?,?,?,?) 
-2018-09-260 11:47:04:004 [main] DEBUG com.nuc.a4q.dao.FloorDao.insertFloor - ==> Parameters: 13(Integer), 16(Integer), JavaJavaJavaJavaJavaJavaJavaJavaJavaJavaJavaJavaJava(String), 2018-09-17 11:47:02.448(Timestamp), 2018-09-17 11:47:02.448(Timestamp)
-2018-09-260 11:47:04:004 [main] DEBUG com.nuc.a4q.dao.FloorDao.insertFloor - <==    Updates: 1
+2018-09-261 21:20:30:030 [main] DEBUG com.nuc.a4q.dao.PostDao.getUserRank - ==>  Preparing: SELECT num,p.user_id,user_name from(SELECT COUNT(f.user_id) num, f.user_id FROM tb_floor f,tb_post p WHERE f.floor_id = p.best_answer_id GROUP BY f.user_id ORDER BY num DESC) temp,tb_person_info p WHERE temp.user_id = p.user_id 
+2018-09-261 21:20:30:030 [main] DEBUG com.nuc.a4q.dao.PostDao.getUserRank - ==> Parameters: 
+2018-09-261 21:20:30:030 [main] DEBUG com.nuc.a4q.dao.PostDao.getUserRank - <==      Total: 2

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.nuc.a4q.dao.PostDao;
 import com.nuc.a4q.entity.Post;
+import com.nuc.a4q.entity.UserRank;
 
 @Service
 public class PostService {
@@ -64,12 +65,42 @@ public class PostService {
 		post.setPriority(maxPriority + 1);
 		dao.updatePost(post);
 	}
-	
+
 	/**
 	 * 根据课程ID
+	 * 
 	 * @param courseId
 	 */
 	public Integer getPostCountByCourseId(Integer courseId) {
 		return dao.getPostCountByCourseId(courseId);
+	}
+
+	/**
+	 * 通过优先级获得已解决的问题列表
+	 * 
+	 * @return
+	 */
+	public List<Post> getResolvedPost() {
+		List<Post> list = dao.getResolvedPostTestByPriority();
+		return list;
+	}
+
+	/**
+	 * 通过优先级获得未解决的问题列表
+	 * 
+	 * @return
+	 */
+	public List<Post> getUnResolvedPost() {
+		List<Post> list = dao.getUnResolvedPostTestByPriority();
+		return list;
+	}
+
+	/**
+	 * 通过用户回答的问题的评价获得排序
+	 * @return
+	 */
+	public List<UserRank> getUserRank() {
+		List<UserRank> userList = dao.getUserRank();
+		return userList;
 	}
 }

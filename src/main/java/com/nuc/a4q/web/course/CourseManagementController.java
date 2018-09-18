@@ -118,9 +118,9 @@ public class CourseManagementController {
 		service.addCourse(course);
 		return ResultUtil.success();
 	}
-	
+
 	@ResponseBody
-	@RequestMapping(value="getPostCountByCourseId",method=RequestMethod.GET)
+	@RequestMapping(value = "getPostCountByCourseId", method = RequestMethod.GET)
 	public Result getPostCountByCourseId(Integer courseId) {
 		Integer count = postService.getPostCountByCourseId(courseId);
 		return ResultUtil.success(count);

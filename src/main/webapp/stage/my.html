@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>个人信息</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<link rel="stylesheet"
+	href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+<link rel="stylesheet"
+	href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+
+</head>
+<body>
+	<div class="page-group">
+		<div class="page page-current">
+			<header class="bar bar-nav">
+				<h1 class='title'>
+					<font size="+5">我的论坛</font>
+				</h1>
+			</header>
+			<div class="content">
+				<div class="buttons-tab">
+					<a href="#tab1" class="tab-link active button">我的信息</a> <a
+						href="#tab2" class="tab-link button">我的发帖</a> <a href="#tab3"
+						class="tab-link button">我的回帖</a>
+				</div>
+				<div class="content-block">
+					<div class="tabs">
+						<div id="tab1" class="tab active">
+							<div class="content-block">
+								<form id="submitForm">
+									<div>
+										<div>
+											<div>
+												<div class="list-block">
+													<ul>
+														<!-- Text inputs -->
+														<li>
+															<div class="item-content">
+																<div class="item-media">
+																	<i class="icon icon-form-name"></i>
+																</div>
+																<div class="item-inner">
+																	<div class="item-title label">手机号：</div>
+																	<div class="item-input">
+																		<input type="text" id="phone" name="phone"
+																			placeholder="手机号">
+																	</div>
+																</div>
+															</div>
+														</li>
+
+														<li>
+															<div class="item-content">
+																<div class="item-media">
+																	<i class="icon icon-form-name"></i>
+																</div>
+																<div class="item-inner">
+																	<div class="item-title label">邮箱：</div>
+																	<div class="item-input">
+																		<input type="text" id="email" name="email"
+																			placeholder="邮箱地址">
+																	</div>
+																</div>
+															</div>
+														</li>
+
+														<li>
+															<div class="item-content">
+																<div class="item-media">
+																	<i class="icon icon-form-name"></i>
+																</div>
+																<div class="item-inner">
+																	<div class="item-title label">密码：</div>
+																	<div class="item-input">
+																		<input type="password" name="password" id="pw"
+																			maxlength=15 placeholder="6-15位的密码">
+																	</div>
+																</div>
+															</div>
+														</li>
+
+														<li>
+															<div class="item-content">
+																<div class="item-media">
+																	<i class="icon icon-form-name"></i>
+																</div>
+																<div class="item-inner">
+																	<div class="item-title label">用户名称：</div>
+																	<div class="item-input">
+																		<input type="text" id="userName" name="userName"
+																			placeholder="用户名称">
+																	</div>
+																</div>
+															</div>
+														</li>
+
+														<!-- 性别，下拉列表 -->
+														<li>
+															<div class="item-content">
+																<div class="item-media">
+																	<i class="icon icon-form-gender"></i>
+																</div>
+																<div class="item-inner">
+																	<div class="item-title label">性别</div>
+																	<div class="item-input">
+																		<select id="gender" name="gender">
+																			<option value="">请选择</option>
+																			<option value="男">男</option>
+																			<option value="女">女</option>
+																		</select>
+																	</div>
+																</div>
+															</div>
+														</li>
+														<!-- 用户身份，下拉列表 -->
+														<li>
+															<div class="item-content">
+																<div class="item-media">
+																	<i class="icon icon-form-gender"></i>
+																</div>
+																<div class="item-inner">
+																	<div class="item-title label">用户身份</div>
+																	<div class="item-input">
+																		<select name="userType" id="userType">
+																			<option value="">请选择</option>
+																			<option value="老师">老师</option>
+																			<option value="学生">学生</option>
+																		</select>
+																	</div>
+																</div>
+															</div>
+														</li>
+														<!-- 用户头像,input（file），留着有机会了做 -->
+														<!-- <li>
+							<div class="item-content">
+								<div class="item-media">
+									<i class="icon icon-form-name"></i>
+								</div>
+								<div class="item-inner">
+									<div class="item-title label">店铺首图</div>
+									<div class="item-input">
+										<input type="file" id="shop-img">
+									</div>
+								</div>
+							</div>
+						</li> -->
+
+														<!-- 验证码，防止重复提交 -->
+														<li id="vc">
+															<div class="item-content">
+																<div class="item-media">
+																	<i class="icon icon-form-name"></i>
+																</div>
+																<div class="item-inner">
+																	<div class="item-title label">验证码</div>
+																	<div class="item-input">
+																		<input type="text" name="verifyCode" id="verifyCode"
+																			placeholder="验证码"> <img alt="点击更换"
+																			src="/a4q/Kaptcha" name="verifyCode" title="点击更换"
+																			onclick="changeVerifyCode(this)">
+																	</div>
+																</div>
+															</div>
+														</li>
+													</ul>
+												</div>
+												<div class="content-block">
+													<div class="row">
+														<div class="col-50">
+															<a class="button button-big button-fill button-danger"
+																onclick="cancle()">返回</a>
+														</div>
+														<div class="col-50">
+															<a class="button button-big button-fill button-success"
+																id="submit">提交</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div id="tab2" class="tab">
+							<div class="content-block">
+<table width="100%">
+         <tr>
+         <td width="70%"><font size="+3"  color="#FF0000">帖子标题</font></td>
+         <td width="30%"><font size="+3"  color="#FF0000">发帖时间</font></td>
+         </tr>
+		 <tr>
+		 <td><a href="">JAVA的发展史...</a></td>
+		 <td>2018.9.18.15点52分...</td>
+		 </tr>
+		 <tr>
+		 <td><a href="">数据库的作用...</a></td>
+		 <td>2018.9.18.15点53分...</td>
+		 </tr>
+		 </table>
+							</div>
+						</div>
+						<div id="tab3" class="tab">
+							<div class="content-block">
+						<table width="100%">
+         <tr>
+         <td width="70%"><font size="+3"  color="#FF0000">帖子标题</font></td>
+         <td width="30%"><font size="+3"  color="#FF0000">回帖时间</font></td>
+         </tr>
+		 <tr>
+		 <td><a href="">JAVA的发展史...</a></td>
+		 <td>2018.9.18.15点52分...</td>
+		 </tr>
+		 <tr>
+		 <td><a href="">数据库的作用...</a></td>
+		 <td>2018.9.18.15点53分...</td>
+		 </tr>
+		 </table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type='text/javascript'
+		src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+	<script type='text/javascript'
+		src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+	<script type='text/javascript'
+		src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+
+</body>
+</html>

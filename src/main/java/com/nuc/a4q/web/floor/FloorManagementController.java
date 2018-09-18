@@ -29,7 +29,7 @@ public class FloorManagementController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="getFloorList",method=RequestMethod.POST)
+	@RequestMapping(value="getFloorList")
 	public Result getFloorList(Floor floor,PersonInfo user) {
 		if(user.getUserId() != null) {
 			floor.setUser(user);

@@ -29,3 +29,14 @@ function format(str) {
 	// nowDate.getSeconds();
 	return year + "-" + month + "-" + date + " " + hour + ":" + minute;
 }
+
+//格式化毫秒格式的时间
+function formatD(str) {
+	var nowDate = new Date(str);
+	var year = nowDate.getFullYear();
+	var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1)
+			: nowDate.getMonth() + 1;
+	var date = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate
+			.getDate();
+	return year + "-" + month + "-" + date;
+}

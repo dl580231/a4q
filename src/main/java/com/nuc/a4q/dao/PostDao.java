@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.nuc.a4q.entity.Post;
+import com.nuc.a4q.entity.UserRank;
 
 public interface PostDao {
 	/**
@@ -67,4 +68,23 @@ public interface PostDao {
 	 * @return
 	 */
 	public Integer getPostCountByCourseId(Integer courseId);
+
+	/**
+	 * 通过优先级获得已解决问题的列表
+	 */
+	public List<Post> getResolvedPostTestByPriority();
+
+	/**
+	 * 通过优先级获得未解决问题的列表
+	 * 
+	 * @return
+	 */
+	public List<Post> getUnResolvedPostTestByPriority();
+
+	/**
+	 * 获取用户回答排行榜
+	 * 
+	 * @return
+	 */
+	public List<UserRank> getUserRank();
 }

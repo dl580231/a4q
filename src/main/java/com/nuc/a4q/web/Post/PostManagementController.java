@@ -14,6 +14,7 @@ import com.nuc.a4q.entity.Course;
 import com.nuc.a4q.entity.PersonInfo;
 import com.nuc.a4q.entity.Post;
 import com.nuc.a4q.entity.Result;
+import com.nuc.a4q.entity.UserRank;
 import com.nuc.a4q.exception.LogicException;
 import com.nuc.a4q.group.Delete;
 import com.nuc.a4q.group.Update;
@@ -33,7 +34,7 @@ public class PostManagementController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/getPostList", method = RequestMethod.POST)
+	@RequestMapping(value = "/getPostList")
 	public Result getPostList(Post post, Integer courseId, Integer userId) {
 		if (courseId != null) {
 			Course course = new Course();
@@ -96,5 +97,36 @@ public class PostManagementController {
 		}
 		service.bottomPost(post);
 		return ResultUtil.success();
+	}
+
+	/**
+	 * 通过优先级获得已解决问题的列表
+	 * 
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "getResolvedPost", method = RequestMethod.GET)
+	public Result getResolvedPost() {
+		List<Post> list = service.getResolvedPost();
+		return ResultUtil.success(list);
+	}
+
+	/**
+	 * 通过优先级获得未问题的列表
+	 * 
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "getUnResolvedPost", method = RequestMethod.GET)
+	public Result getUnResolvedPost() {
+		List<Post> list = service.getUnResolvedPost();
+		return ResultUtil.success(list);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "getUserRank", method = RequestMethod.GET)
+	public Result getUserRank() {
+		List<UserRank> userList = service.getUserRank();
+		return ResultUtil.success(userList);
 	}
 }

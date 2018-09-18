@@ -11,6 +11,7 @@ import com.nuc.a4q.BaseTest;
 import com.nuc.a4q.entity.Course;
 import com.nuc.a4q.entity.PersonInfo;
 import com.nuc.a4q.entity.Post;
+import com.nuc.a4q.entity.UserRank;
 
 public class PostDaoTest extends BaseTest {
 	@Autowired
@@ -67,6 +68,7 @@ public class PostDaoTest extends BaseTest {
 	}
 
 	@Test
+	@Ignore
 	public void queryPostListTest() {
 		Post post = new Post();
 		List<Post> list = postdao.queryPostList(post);
@@ -94,5 +96,24 @@ public class PostDaoTest extends BaseTest {
 		Integer minPriority = postdao.queryMinPriority();
 		System.out.println(minPriority);
 	}
+	
+	@Test
+	@Ignore
+	public void getResolvedPostTestByPriority() {
+		List<Post> list = postdao.getResolvedPostTestByPriority();
+		System.out.println(list);
+	}
 
+	@Test
+	@Ignore
+	public void getUnResolvedPostTestByPriority() {
+		List<Post> list = postdao.getUnResolvedPostTestByPriority();
+		System.out.println(list);
+	}
+	
+	@Test
+	public void getUserRankTest() {
+		List<UserRank> list = postdao.getUserRank();
+		System.out.println(list);
+	}
 }

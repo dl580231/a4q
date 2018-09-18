@@ -37,6 +37,7 @@
 		from
 		tb_post p,tb_person_info per,tb_course c
 		<where>
+			<if test="postId != null">post_id = #{postId}</if>
 			<if test="deployUser != null and deployUser.userId != null">and p.user_id = #{deployUser.userId}</if>
 			<if test="postContent != null and postContent != ''">and post_content like CONCAT("%",#{postContent},"%")
 			</if>
@@ -92,21 +93,54 @@
 		</where>
 		limit #{rowStart},#{rowSize}
 	</select>
-	
+
 	<select id="queryMinPriority" resultType="int">
- 		SELECT MIN(priority)
- 		FROM tb_post
- 	</select>
+		SELECT MIN(priority)
+		FROM tb_post
+	</select>
 
 	<select id="queryMaxPriority" resultType="int">
 		SELECT MAX(priority)
- 		FROM tb_post
+		FROM tb_post
 	</select>
-	
-	<select id="getPostCountByCourseId" parameterType="int" resultType="int">
+
+	<select id="getPostCountByCourseId" parameterType="int"
+		resultType="int">
 		select COUNT(post_id)
 		from tb_post
-		where course_id = #{courseId}
+		where course_id =
+		#{courseId}
+	</select>
+
+	<select id="getResolvedPostTestByPriority" resultMap="postMap">
+		select
+		post_id,post_title,t.create_time,priority,user_name,t.user_id
+		from
+		tb_post t,tb_person_info u
+		where best_answer_id is not null AND
+		t.user_id = u.user_id
+		ORDER BY priority ASC
+		limit 0,8
+	</select>
+
+	<select id="getUnResolvedPostTestByPriority" resultMap="postMap">
+		select
+		post_id,post_title,t.create_time,priority,user_name,t.user_id
+		from
+		tb_post t,tb_person_info u
+		where best_answer_id is null AND
+		t.user_id =
+		u.user_id
+		ORDER BY priority ASC
+		limit 0,8
+	</select>
+
+	<select id="getUserRank" resultType="UserRank">
+		SELECT
+		num,p.user_id,user_name from(SELECT COUNT(f.user_id) num, f.user_id
+		FROM tb_floor f,tb_post p WHERE f.floor_id = p.best_answer_id GROUP BY
+		f.user_id ORDER BY num DESC) temp,tb_person_info p WHERE temp.user_id
+		= p.user_id LIMIT 0,10
 	</select>
 </mapper>
  
