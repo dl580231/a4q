@@ -2,6 +2,8 @@ package com.nuc.a4q.web.course;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,6 +22,7 @@ import com.nuc.a4q.group.Update;
 import com.nuc.a4q.service.CourseService;
 import com.nuc.a4q.service.PersonInfoService;
 import com.nuc.a4q.service.PostService;
+import com.nuc.a4q.utils.HttpServletRequestUtils;
 import com.nuc.a4q.utils.ResultUtil;
 
 @Controller
@@ -124,5 +127,20 @@ public class CourseManagementController {
 	public Result getPostCountByCourseId(Integer courseId) {
 		Integer count = postService.getPostCountByCourseId(courseId);
 		return ResultUtil.success(count);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "moderatorJudge", method = RequestMethod.GET)
+	public Result moderatorJudge(HttpServletRequest request, Integer courseId) {
+		PersonInfo user = (PersonInfo) HttpServletRequestUtils.getSessionAttr(request, "user");
+		if (user == null) {
+			return ResultUtil.error("用户状态未登陆");
+		}
+		Boolean result = service.moderatorJudge(user, courseId);
+		if (result) {
+			return ResultUtil.success();
+		} else {
+			return ResultUtil.error("不是版主");
+		}
 	}
 }

@@ -28,16 +28,21 @@ import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.nuc.a4q.group.Delete;
+import com.nuc.a4q.group.Insert;
 import com.nuc.a4q.group.Update;
 
 public class Post {
-	@NotNull(message = "用户ID为空", groups = { Delete.class, Update.class })
+	@NotNull(message = "帖子ID", groups = { Delete.class, Update.class })
 	private Integer postId;
 	private Course course;
 	private PersonInfo deployUser;
 	private Integer bestAnswerId;
+	@NotBlank(message="发帖标题不能为空",groups= {Insert.class})
 	private String postTitle;
+	@NotBlank(message="发帖内容不能为空",groups= {Insert.class})
 	private String postContent;
 	private Integer priority;
 	/**

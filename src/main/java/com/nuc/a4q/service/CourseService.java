@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.nuc.a4q.dao.CourseDao;
 import com.nuc.a4q.entity.Course;
+import com.nuc.a4q.entity.PersonInfo;
 import com.nuc.a4q.exception.LogicException;
 
 @Service
@@ -79,5 +80,27 @@ public class CourseService {
 	 */
 	private Integer getCourseByCourseName(String courseName) {
 		return dao.getCourseByCourseName(courseName);
+	}
+
+	public Boolean moderatorJudge(PersonInfo user, Integer courseId) {
+		if (courseId == null) {
+			throw new LogicException("课程ID为空");
+		}
+		Course course = new Course();
+		course.setCourseId(courseId);
+		List<Course> list = dao.queryCourseList(course);
+		if (list == null) {
+			throw new LogicException("课程信息为空");
+		}
+		Course result = list.get(0);
+		if (result.getModerator() == null) {
+			return false;
+		} else {
+			if (result.getModerator().getUserId() == user.getUserId()) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 }

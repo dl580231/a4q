@@ -4,7 +4,10 @@ import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.nuc.a4q.group.Delete;
+import com.nuc.a4q.group.Insert;
 
 /**
  * 
@@ -25,10 +28,12 @@ import com.nuc.a4q.group.Delete;
 public class Floor {
 	@NotNull(message="楼ID不能为空",groups= {Delete.class})
 	private Integer floorId;
+	@NotNull(message="帖子ID为空",groups= {Insert.class})
 	private Integer postId;
 	private PersonInfo user;
 	private Date createTime;
 	private Date lastEditTime;
+	@NotBlank(message="回答内容不能为空",groups= {Insert.class})
 	private String floorContent;
 
 	public Integer getFloorId() {

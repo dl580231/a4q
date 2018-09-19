@@ -1,5 +1,6 @@
 package com.nuc.a4q.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.nuc.a4q.dao.PostDao;
+import com.nuc.a4q.entity.Course;
+import com.nuc.a4q.entity.PersonInfo;
 import com.nuc.a4q.entity.Post;
 import com.nuc.a4q.entity.UserRank;
+import com.nuc.a4q.exception.LogicException;
 
 @Service
 public class PostService {
@@ -112,5 +116,19 @@ public class PostService {
 	public List<Post> getUnResolved(Integer courseId,String postContent,String postTitle) {
 		List<Post> list = dao.getUnResolvedByPriority(courseId, postContent, postTitle);
 		return list;
+	}
+
+	public void deployPost(Post post,Integer courseId,PersonInfo user) {
+		if(courseId == null) {
+			throw new LogicException("课程Id为空");
+		}
+		Course course = new Course();
+		course.setCourseId(courseId);
+		post.setCourse(course);
+		post.setPriority(0);
+		post.setDeployUser(user);
+		post.setCreateTime(new Date());
+		post.setLastEditTime(new Date());
+		dao.insertPost(post);
 	}
 }

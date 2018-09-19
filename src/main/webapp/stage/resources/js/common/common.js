@@ -40,3 +40,21 @@ function formatD(str) {
 			.getDate();
 	return year + "-" + month + "-" + date;
 }
+
+//登录状态判断
+/*function loginState(){
+	var loginStateUrl = "/a4q/personInfoAdmin/loginState";
+	$.ajax({
+		url : loginStateUrl,
+		type : "GET",
+		asyn : false,
+		success : function(data){
+			if(data.state == 0){
+				isLogin = true;
+			}else{
+				alert(data.stateInfo);
+			}
+		}
+	});
+	return isLogin;
+}*/

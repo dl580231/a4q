@@ -21,6 +21,7 @@ import com.nuc.a4q.group.LoginAuth;
 import com.nuc.a4q.group.Update;
 import com.nuc.a4q.service.PersonInfoService;
 import com.nuc.a4q.utils.CodeUtils;
+import com.nuc.a4q.utils.HttpServletRequestUtils;
 import com.nuc.a4q.utils.ResultUtil;
 
 @Controller
@@ -38,13 +39,14 @@ public class PersonInfoManagementController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "userRegister", method = RequestMethod.POST)
-	public Result userRegister(@Validated(Insert.class) PersonInfo personInfo, BindingResult bindingResult,HttpServletRequest request) {
+	public Result userRegister(@Validated(Insert.class) PersonInfo personInfo, BindingResult bindingResult,
+			HttpServletRequest request) {
 		// 0.表单验证
 		if (bindingResult.hasErrors()) {
 			return ResultUtil.error(ResultEnum.FORM_AUTH_ERROR.getState(),
 					bindingResult.getFieldError().getDefaultMessage());
 		}
-		
+
 		boolean verifyCodeResult = CodeUtils.checkVerifyCode(request);
 		if (!verifyCodeResult) {
 			throw new LogicException("验证码错误，请重新输入");
@@ -139,7 +141,6 @@ public class PersonInfoManagementController {
 	 * @param personInfo
 	 * @return
 	 */
-
 	@ResponseBody
 	@RequestMapping(value = "updateUser", method = RequestMethod.POST)
 	public Result updateUser(@Validated(value = Update.class) PersonInfo personInfo, BindingResult bindingResult) {
@@ -149,5 +150,22 @@ public class PersonInfoManagementController {
 		}
 		service.updateUser(personInfo);
 		return ResultUtil.success();
+	}
+
+	/**
+	 * 登录状态验证
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "loginState", method = RequestMethod.GET)
+	public Result loginState(HttpServletRequest request) {
+		PersonInfo user = (PersonInfo) HttpServletRequestUtils.getSessionAttr(request, "user");
+		if (user == null) {
+			return ResultUtil.error("请登录");
+		} else {
+			return ResultUtil.success(user);
+		}
 	}
 }

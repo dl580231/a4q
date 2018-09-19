@@ -1,5 +1,6 @@
 package com.nuc.a4q.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,11 @@ public class FloorService {
 
 	public Integer getFloorCountByPostId(Integer postId) {
 		return dao.getFloorCountByPostId(postId);
+	}
+
+	public void addFloor(Floor floor) {
+		floor.setCreateTime(new Date());
+		floor.setLastEditTime(new Date());
+		dao.insertFloor(floor);
 	}
 }

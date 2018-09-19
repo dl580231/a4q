@@ -14,6 +14,7 @@ import com.nuc.a4q.entity.Floor;
 import com.nuc.a4q.entity.PersonInfo;
 import com.nuc.a4q.entity.Result;
 import com.nuc.a4q.group.Delete;
+import com.nuc.a4q.group.Insert;
 import com.nuc.a4q.service.FloorService;
 import com.nuc.a4q.utils.ResultUtil;
 
@@ -38,6 +39,12 @@ public class FloorManagementController {
 		return ResultUtil.success(list);
 	}
 	
+	/**
+	 * 删除楼回复
+	 * @param floor
+	 * @param result
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="removeFloor",method=RequestMethod.GET)
 	public Result removeFloor(@Validated(Delete.class)Floor floor,BindingResult result) {
@@ -45,6 +52,22 @@ public class FloorManagementController {
 			return ResultUtil.error(result.getFieldError().getDefaultMessage());
 		}
 		service.removeFloor(floor);
+		return ResultUtil.success();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="addFloor",method=RequestMethod.POST)
+	public Result addFloor(@Validated(Insert.class)Floor floor,BindingResult result,Integer userId) {
+		if(result.hasErrors()) {
+			return ResultUtil.error(result.getFieldError().getDefaultMessage());
+		}
+		if(userId == null) {
+			return ResultUtil.error("用户信息为空");
+		}
+		PersonInfo user = new PersonInfo();
+		user.setUserId(userId);
+		floor.setUser(user);
+		service.addFloor(floor);
 		return ResultUtil.success();
 	}
 }

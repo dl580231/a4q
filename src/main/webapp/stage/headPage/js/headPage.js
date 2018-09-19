@@ -109,3 +109,8 @@ function search(){
 	var url = "/a4q/stage/postList.html?key="+key;
 	window.open(url); 
 }
+
+//提出问题
+function ask(){
+	window.open("/a4q/stage/a4q.html");
+}

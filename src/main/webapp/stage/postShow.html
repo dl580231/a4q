@@ -16,7 +16,7 @@
   
 
 <body>
-<div align="right" style="font-size:17px"><a href="login.html" target="_blank">登陆</a>/<a href="register.html" target="_blank">注册</a></div>
+<div align="right" style="font-size:17px"><a class="loginState" href="login.html" target="_blank">登录</a><a class="register" href="register.html" target="_blank">|注册</a></div>
 <div id="container" class="atl-main">
         <div class="wd-location atl-location clearfix">
             <p class="crumbs">
@@ -31,9 +31,7 @@
 	            <h1><span style="font-weight:400;" id="postTitle"></span></h1>
 	        </div>
 	        <div class="q-info">
-	            <span>
-	                <i class="icon-faceblue"></i>
-	            </span>
+	            <span><i class="icon-faceblue"></i></span>
 	            <span class="ml5">楼主：<a id="userName"></a>&nbsp;&nbsp;时间：<span id="createTime">2018-09-06 09:13:45</span>&nbsp;&nbsp;回复：<span class="floorCount"></soan></span>
 	        </div>
 				
@@ -49,7 +47,8 @@
 	            
             </div>
         </div>
-        <div class="wd-page tr">
+        <!-- 分页有机会做 -->
+        <!-- <div class="wd-page tr">
 		<div class="atl-pages"><form action="" method="get" onsubmit="return goPage(this,'934',188638,2);">
 
 		<span>上页</span>
@@ -57,18 +56,18 @@
 <a href="/post-934-188638-2-1.shtml">2</a>
 <a href="/post-934-188638-2-1.shtml" class="js-keyboard-next">下页</a>
 &nbsp;到<input name="page" class="pagetxt" type="text" bindcursor="true">页&nbsp;<input name="gopage" class="pagebtn" type="submit" maxlength="6" value="确定"></form></div>
-        </div>
+        </div> -->
 		
         <div class="wd-reply clearfix" align="center">
-        	
-            	<p class="mb10"><a class="act-login" href="login.html">登录</a> | <a href="register.html">注册</a></p>
+        		<!-- 留着，有时间做,好，现在要做了 -->
+            	<p class="mb10"><a class="act-login loginState" href="login.html">登录</a>  <a class="register" href="register.html">|注册</a></p>
             	<div class="textarea-box-holder" >
             	<div class="textarea-box reply-box" >
             	<div class="toolbar editorToolBar" >
             	</div>
             	<div class="textarea">
             	<div style="position: relative; width: 630px; height: 213px;">
-            	<textarea class="act-reply-textarea" id="textAreaContainer" bindcursor="true"></textarea>
+            	<textarea placeholder="请输入回复内容......" class="floorContent"></textarea>
             	<div id="TY_ui_draft" class="TY-ui-draft clearfix" style="top: 0px; right: 0px; height: 191px;">
             	<div class="draft-box"><div class="hd cf"><h4>您还可以保存<span class="remain-num"></span>份草稿</h4>
             	<a class="toggle-help-box" href="javascript:;" title="帮助">帮助</a></div>

@@ -29,7 +29,7 @@ function login() {
 			cache : false,
 			success : function(data) {
 				if (data.state == 0) {
-					alert("登陆成功");
+					alert("登录成功");
 				} else {
 					alert(data.stateInfo);
 				}

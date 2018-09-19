@@ -51,8 +51,8 @@ public class PersonInfoService {
 			throw new LogicException("用户名不存在");
 		} else {
 			if (personInfo.getPassword().equals(info.getPassword())) {
-				personInfo.setPassword(null);
-				return personInfo;
+				info.setPassword(null);
+				return info;
 			} else {
 				throw new LogicException("用户名或密码错误");
 			}

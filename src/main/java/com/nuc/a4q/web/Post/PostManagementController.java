@@ -2,6 +2,8 @@ package com.nuc.a4q.web.Post;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -17,8 +19,10 @@ import com.nuc.a4q.entity.Result;
 import com.nuc.a4q.entity.UserRank;
 import com.nuc.a4q.exception.LogicException;
 import com.nuc.a4q.group.Delete;
+import com.nuc.a4q.group.Insert;
 import com.nuc.a4q.group.Update;
 import com.nuc.a4q.service.PostService;
+import com.nuc.a4q.utils.HttpServletRequestUtils;
 import com.nuc.a4q.utils.ResultUtil;
 
 @Controller
@@ -164,5 +168,26 @@ public class PostManagementController {
 		}
 		List<Post> list = service.getUnResolved(courseId, postContent, postTitle);
 		return ResultUtil.success(list);
+	}
+
+	/**
+	 * 发表帖子
+	 * @param post
+	 * @param result
+	 * @param courseId
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "deployPost", method = RequestMethod.POST)
+	public Result deployPost(@Validated(Insert.class) Post post, BindingResult result, Integer courseId,HttpServletRequest request) {
+		if (result.hasErrors()) {
+			return ResultUtil.error(result.getFieldError().getDefaultMessage());
+		}
+		PersonInfo user = (PersonInfo)HttpServletRequestUtils.getSessionAttr(request, "user");
+		if(user == null) {
+			return ResultUtil.error("发表问题之前请登录,登录成功后刷新页面");
+		}
+		service.deployPost(post,courseId,user);
+		return ResultUtil.success();
 	}
 }
