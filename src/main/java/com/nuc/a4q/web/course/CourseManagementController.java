@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nuc.a4q.entity.Course;
 import com.nuc.a4q.entity.PersonInfo;
+import com.nuc.a4q.entity.Post;
 import com.nuc.a4q.entity.Result;
 import com.nuc.a4q.exception.LogicException;
 import com.nuc.a4q.group.Delete;
@@ -136,7 +137,11 @@ public class CourseManagementController {
 		if (user == null) {
 			return ResultUtil.error("用户状态未登陆");
 		}
-		Boolean result = service.moderatorJudge(user, courseId);
+		Post post = (Post) HttpServletRequestUtils.getSessionAttr(request, "currentPost");
+		if(post == null) {
+			return ResultUtil.error("未查询到post信息");
+		}
+		Boolean result = service.moderatorJudge(user, post.getCourse().getCourseId());
 		if (result) {
 			return ResultUtil.success();
 		} else {

@@ -6,7 +6,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.nuc.a4q.group.Delete;
 import com.nuc.a4q.group.Insert;
 
 /**
@@ -26,9 +25,9 @@ import com.nuc.a4q.group.Insert;
  * 
  */
 public class Floor {
-	@NotNull(message="楼ID不能为空",groups= {Delete.class})
+	@NotNull(message="楼ID不能为空",groups= {})
 	private Integer floorId;
-	@NotNull(message="帖子ID为空",groups= {Insert.class})
+	@NotNull(message="帖子ID为空",groups= {})
 	private Integer postId;
 	private PersonInfo user;
 	private Date createTime;

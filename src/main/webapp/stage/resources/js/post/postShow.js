@@ -1,48 +1,51 @@
 $(function() {
-//	初始化一些全局信息
-	var courseId;
-	var user;
-	var post;
-	var isLogin = false;
-	var isModerator = false;
 	var postId = getQueryString("postId");
 	if (!postId) {
 		/* window.location.href = "../../../headPage/headpage.html"; */
 	} else {
-		initPost(postId);
-		initFloor(postId);
-		loginState();// 登录状态判断
-		/*if(isModerator){
-			$(".moderator-delete").show();
-		}*/
+		initPage(postId);
 	}
 	
 	//	设置点击事件
 	$("#reply").click(function(){
 		replyHandle();
 	});
+});
 
+	
 
+	function initPage(postId){
+		initPost(postId);
+		loginState(postId);//登录状态判断
+	}
 	
 	// 初始化帖子信息
 	function initPost(postId) {
-		var initPostUrl = "/a4q/post/getPostList?postId=" + postId;
+		var initPostUrl = "/a4q/post/getPostById?postId=" + postId+"&fresh=" + + Math.random();
 		$.ajax({
 			url : initPostUrl,
 			type : "GET",
 			asyn : false,
+			cache : false,
 			success : function(data){
 					if (data.state == 0) {
-						if (data.data) {
-							post = data.data[0];
-							courseId = post.course.courseId;
+							var post = data.data;
 							$("#postTitle").text(post.postTitle);
 							$("#postContent").text(post.postContent);
 							$("#userName").text(post.deployUser.userName);
+							$("#userName").attr("href","personInfoShow.html?userId="+post.deployUser.userId);
 							$("#createTime").text(format(post.createTime));
-						} else {
-							alert("帖子信息不存在");
-						}
+							var isResolved =post.bestAnswerId;
+							/*alert("bestAnswer :"+isResolved);*/
+							if(isResolved != null){
+								$("#isResolved").text("已解决");
+								$("#isResolved").css("color","blue");
+								initFloor(postId,isResolved)
+							}else{
+								$("#isResolved").text("未解决");
+								$("#poster").append('<input id="floorBest" placeholder="输入最佳答案所属楼"/><input type="button" onclick="elect()" value="提交">');
+								initFloor(postId,null);
+							}
 					} else {
 						alert("查询失败");
 					}
@@ -51,17 +54,28 @@ $(function() {
 	}
 	
 	// 初始化楼信息
-	function initFloor(postId) {
-		var initFloorUrl = "/a4q/floor/getFloorList?postId=" + postId+"&fresh=" + Math.random();
+	function initFloor(postId,isResolved) {
+		alert(isResolved);
+		var initFloorUrl = null;
+		if(isResolved != null){
+			initFloorUrl = "/a4q/floor/getFloorList?postId="+postId+"&isResolved="+isResolved+"&fresh="+Math.random();
+		}else{
+			initFloorUrl = "/a4q/floor/getFloorList?postId="+postId+"&fresh="+Math.random();
+		}
+		
 		$.getJSON(initFloorUrl, function(data) {
 			if (data.state == 0) {
-				$(".floorCount").text(data.data.length+"个回答");
+				if(isResolved != null){
+					$("#bestAnswer").text("最佳回答为:"+data.data.bestAnswer);
+				}
+				$(".floorCount").text(data.data.list.length+"个回答");
 				var tempHtml = "";
-				$.map(data.data, function(value, index) {
+				$.map(data.data.list, function(value, index) {
+					index = index + 1;
 					tempHtml += '<div class="answer-item atl-item" floorid="1">'+
 	                			'<div class="atl-head-reply moderator-delete"><a onclick="remove('+value.floorId+')">版主删除权限</a></div>'+
-	                			'<div class="user" id="floorUser">'+
-	                			'<a>'+value.user.userName+'</a>&nbsp;'+format(value.createTime)+'&nbsp;'+(++index)+'楼</div>'+
+	                			'<div class="user">'+
+	                			'<a href="personInfoShow.html?userId='+value.user.userId+'" target="_blank">'+value.user.userName+'</a>&nbsp;'+format(value.createTime)+'&nbsp;<span floorId="'+value.floorId+'" id="f'+index+'">'+index+'楼</span></div>'+
 	                			'<div class="content" id="floorContent">'+value.floorContent+'</div></div>';
 				});
 				$("#floorShow").html(tempHtml);
@@ -73,7 +87,7 @@ $(function() {
 	}
 	
 	// 登录状态判断
-	function loginState(){
+	function loginState(postId){
 		var loginStateUrl = "/a4q/personInfoAdmin/loginState?fresh=" + Math.random();
 		$.ajax({
 			url : loginStateUrl,
@@ -88,7 +102,7 @@ $(function() {
 					$(".register").hide();
 					moderatorJudge();
 				}else{
-					alert("f");
+					alert("未登录");
 					isLogin = false;
 				}
 			}
@@ -98,11 +112,8 @@ $(function() {
 	
 	//回答操作
 	function replyHandle(){
-		if(isLogin){
 			var addFloorUrl = "/a4q/floor/addFloor";
 			var formData = new FormData();
-			formData.append("postId",post.postId);
-			formData.append("userId",user.userId);
 			var floorContent = $(".floorContent").val();
 			formData.append("floorContent",floorContent);
 			$.ajax({
@@ -111,25 +122,23 @@ $(function() {
 				processData : false,
 				cache : false,
 				asyn : false,
-				type : "Post",
+				type : "POST",
 				data : formData,
 				success : function(data){
 					if(data.state == 0){
 						alert("回答成功");
+						$(".floorContent").val("");
+						initPage(data.data);
 					}else{
 						alert(data.stateInfo);
 					}
 				}
 			});
-		}else{
-			alert("回答问题之前请先登录");
 		}
-	}
 
 	//版主判断
 	function moderatorJudge(){
-		alert(courseId);
-		var moderatorJudgeUrl = '/a4q/course/moderatorJudge?courseId='+courseId+"&fresh=" + Math.random();
+		var moderatorJudgeUrl = '/a4q/course/moderatorJudge?fresh='+Math.random();
 		$.getJSON(moderatorJudgeUrl,function(data){
 			if(data.state == 0){
 				isModerator = true;
@@ -140,5 +149,41 @@ $(function() {
 		});
 	}
 
-});
+	function remove(floorId){
+		var result = confirm("确认删除该楼信息");
+		if(result){
+			var removeUrl = "/a4q/floor/removeFloor?floorId="+floorId;
+			$.getJSON(removeUrl,function(data){
+				if(data.state == 0){
+					alert("删除成功");
+					initPage(data.data);
+				}else{
+					alert(data.stateInfo);
+				}
+			});
+		}
+	}
 
+	function elect(){
+		var result = confirm("确认提交?");
+		if(result){
+			var num = $("#floorBest").val();
+			if(isNaN(num)){
+				alert("请输入楼对应的数字");
+			}else{
+				var floorId = $("#f"+num).attr("floorId");
+				if(floorId){
+					var url = "/a4q/post/electBestAnswer?floorId="+floorId;
+					$.getJSON(url,function(data){
+						if(data.state == 0){
+							alert("指定成功");
+						}else{
+							alert(data.stateInfo);
+						}
+					});
+				}else{
+					alert("请输入正确楼数")
+				}
+			}
+		}
+	}

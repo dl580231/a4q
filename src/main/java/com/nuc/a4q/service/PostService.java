@@ -101,25 +101,26 @@ public class PostService {
 
 	/**
 	 * 通过用户回答的问题的评价获得排序
+	 * 
 	 * @return
 	 */
 	public List<UserRank> getUserRank() {
 		List<UserRank> userList = dao.getUserRank();
 		return userList;
 	}
-	
-	public List<Post> getResolved(Integer courseId,String postContent,String postTitle) {
+
+	public List<Post> getResolved(Integer courseId, String postContent, String postTitle) {
 		List<Post> list = dao.getResolvedByPriority(courseId, postContent, postTitle);
 		return list;
 	}
-	
-	public List<Post> getUnResolved(Integer courseId,String postContent,String postTitle) {
+
+	public List<Post> getUnResolved(Integer courseId, String postContent, String postTitle) {
 		List<Post> list = dao.getUnResolvedByPriority(courseId, postContent, postTitle);
 		return list;
 	}
 
-	public void deployPost(Post post,Integer courseId,PersonInfo user) {
-		if(courseId == null) {
+	public void deployPost(Post post, Integer courseId, PersonInfo user) {
+		if (courseId == null) {
 			throw new LogicException("课程Id为空");
 		}
 		Course course = new Course();
@@ -130,5 +131,34 @@ public class PostService {
 		post.setCreateTime(new Date());
 		post.setLastEditTime(new Date());
 		dao.insertPost(post);
+	}
+
+	public Post getPostById(Integer postId) {
+		Post post = dao.getPostById(postId);
+		if (post == null) {
+			throw new LogicException("帖子不存在");
+		}
+		return post;
+	}
+
+	/**
+	 * 为帖子选取最佳答案
+	 * 
+	 * @param num
+	 * @param user
+	 * @param post
+	 */
+	public void electBestAnswer(Integer floorId, PersonInfo user, Post post) {
+		// 1.判断空值
+		if (floorId == null || user == null || post == null) {
+			throw new LogicException("用户无操作权限");
+		}
+		// 2.判断权限
+		if (post.getDeployUser().getUserId() == user.getUserId()) {
+			post.setBestAnswerId(floorId);
+			dao.updatePost(post);
+		} else {
+			throw new LogicException("用户无操作权限");
+		}
 	}
 }

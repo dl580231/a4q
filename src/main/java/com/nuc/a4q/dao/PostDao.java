@@ -98,4 +98,6 @@ public interface PostDao {
 	 */
 	public List<Post> getUnResolvedByPriority(@Param("courseId") Integer courseId,
 			@Param("postContent") String postContent, @Param("postTitle") String postTitle);
+
+	public Post getPostById(Integer postId);
 }

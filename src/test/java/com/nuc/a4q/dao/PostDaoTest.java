@@ -126,8 +126,15 @@ public class PostDaoTest extends BaseTest {
 	}
 	
 	@Test
+	@Ignore
 	public void getUnResolvedByPriority() {
 		List<Post> list = postdao.getUnResolvedByPriority(null,"","网络");
 		System.out.println(list);
+	}
+	
+	@Test
+	public void getPostById() {
+		Post post = postdao.getPostById(1);
+		System.out.println(post);
 	}
 }

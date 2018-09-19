@@ -172,6 +172,7 @@ public class PostManagementController {
 
 	/**
 	 * 发表帖子
+	 * 
 	 * @param post
 	 * @param result
 	 * @param courseId
@@ -179,15 +180,39 @@ public class PostManagementController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "deployPost", method = RequestMethod.POST)
-	public Result deployPost(@Validated(Insert.class) Post post, BindingResult result, Integer courseId,HttpServletRequest request) {
+	public Result deployPost(@Validated(Insert.class) Post post, BindingResult result, Integer courseId,
+			HttpServletRequest request) {
 		if (result.hasErrors()) {
 			return ResultUtil.error(result.getFieldError().getDefaultMessage());
 		}
-		PersonInfo user = (PersonInfo)HttpServletRequestUtils.getSessionAttr(request, "user");
-		if(user == null) {
+		PersonInfo user = (PersonInfo) HttpServletRequestUtils.getSessionAttr(request, "user");
+		if (user == null) {
 			return ResultUtil.error("发表问题之前请登录,登录成功后刷新页面");
 		}
-		service.deployPost(post,courseId,user);
+		service.deployPost(post, courseId, user);
+		return ResultUtil.success();
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "getPostById", method = RequestMethod.GET)
+	public Result getPostById(Integer postId, HttpServletRequest request) {
+		Post post = service.getPostById(postId);
+		request.getSession().setAttribute("currentPost", post);
+		return ResultUtil.success(post);
+	}
+
+	/**
+	 * 指定帖子最佳答案
+	 * @param floorId
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "electBestAnswer", method = RequestMethod.GET)
+	public Result electBestAnswer(Integer floorId, HttpServletRequest request) {
+		Post post = (Post) HttpServletRequestUtils.getSessionAttr(request, "currentPost");
+		PersonInfo user = (PersonInfo) HttpServletRequestUtils.getSessionAttr(request, "user");
+		service.electBestAnswer(floorId, user, post);
 		return ResultUtil.success();
 	}
 }
