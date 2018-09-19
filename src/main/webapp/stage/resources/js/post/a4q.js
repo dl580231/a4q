@@ -38,7 +38,8 @@ $(function() {
 				data : data,
 				success : function(data) {
 					if (data.state == 0) {
-						alert("发表成功");
+						alert("发表成功"+data.data);
+						window.location.href=("postShow.html?postId="+data.data);
 					} else {
 						alert(data.stateInfo);
 					}

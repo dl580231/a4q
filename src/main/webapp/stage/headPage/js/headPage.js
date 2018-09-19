@@ -59,7 +59,7 @@ function iterator(data){
 	$.map(data.data,function(value,index){
 	tempHtml += '<tr><td class="qaTitle"><span><a href="/a4q/stage/postShow.html?postId='+value.postId+'" target="_blank" class="qaTitle_link" style="cursor: pointer; display: block;">'+value.postTitle+'</a></span></td>'+
 			'<td>'+formatD(value.createTime)+'</td>'+
-			'<td class="qa_askname"><a target="_blank">'+value.deployUser.userName+'</a></td></tr>';
+			'<td class="qa_askname"><a href="../../stage/personInfoShow.html?userId='+value.deployUser.userId+'" target="_blank">'+value.deployUser.userName+'</a></td></tr>';
 	});
 	return tempHtml;
 }
@@ -93,7 +93,7 @@ function initRank(){
 				var tempHtml = '';
 				$.map(data.data,function(value,index){
 					tempHtml += '<li class="s_c_list l_1">'+
-					   		   '<span><a>'+value.userName+'</a></span>'+
+					   		   '<span><a href="../../stage/personInfoShow.html?userId='+value.userId+'">'+value.userName+'</a></span>'+
 					   		   '<em>'+value.num+'</em></li>';					
 				});
 				$("#rank").html(tempHtml);

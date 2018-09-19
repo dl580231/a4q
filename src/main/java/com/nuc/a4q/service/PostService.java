@@ -119,7 +119,7 @@ public class PostService {
 		return list;
 	}
 
-	public void deployPost(Post post, Integer courseId, PersonInfo user) {
+	public Integer deployPost(Post post, Integer courseId, PersonInfo user) {
 		if (courseId == null) {
 			throw new LogicException("课程Id为空");
 		}
@@ -131,6 +131,7 @@ public class PostService {
 		post.setCreateTime(new Date());
 		post.setLastEditTime(new Date());
 		dao.insertPost(post);
+		return post.getPostId();
 	}
 
 	public Post getPostById(Integer postId) {

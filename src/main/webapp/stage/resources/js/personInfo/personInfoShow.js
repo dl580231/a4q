@@ -1,16 +1,24 @@
 $(function() {
+	$("#modify").hide();
 	var userId = getQueryString("userId");
 	if (userId) {
 		initPage(userId);
 	} else {
 		/* window.location.href = "/a4q/stage/headPage/headpage.html"; */
 	}
+	
+	$("#modify").click(function(){
+		var userId = $(this).attr("userId");
+		var personInfoUrl = "register.html?userId="+userId;
+		window.open(personInfoUrl);
+	});
 });
 
 function initPage(userId) {
 	initUserInfo(userId);
 	initDeployPost(userId);
 	initReplyPost(userId);
+	loginState(userId);
 }
 
 //发布的帖子的展示
@@ -82,4 +90,25 @@ function iterator(data) {
 					formatD(value.createTime)+'</div></div></div></li>';
 	});
 	return tempHtml;
+}
+
+//登录状态判断
+function loginState(userId){
+	var loginStateUrl = "/a4q/personInfoAdmin/loginState?fresh=" + Math.random();
+	$.ajax({
+		url : loginStateUrl,
+		type : "GET",
+		asyn : false,
+		success : function(data){
+			if(data.state == 0){
+				var user = data.data;
+				if(user.userId == userId){
+					$("#modify").show();
+					$("#modify").attr("userId",user.userId);
+				}
+			}else{
+				
+			}
+		}
+	});
 }

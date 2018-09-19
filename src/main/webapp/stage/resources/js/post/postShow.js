@@ -144,11 +144,12 @@ $(function() {
 				isModerator = true;
 				$(".moderator-delete").show();
 			}else{
-				alert("不是版主");
+				/*alert("不是版主");*/
 			}
 		});
 	}
 
+	//版主删除楼信息
 	function remove(floorId){
 		var result = confirm("确认删除该楼信息");
 		if(result){
@@ -164,6 +165,7 @@ $(function() {
 		}
 	}
 
+	//提交最佳答案
 	function elect(){
 		var result = confirm("确认提交?");
 		if(result){
@@ -177,6 +179,7 @@ $(function() {
 					$.getJSON(url,function(data){
 						if(data.state == 0){
 							alert("指定成功");
+							initPage(data.data);
 						}else{
 							alert(data.stateInfo);
 						}
