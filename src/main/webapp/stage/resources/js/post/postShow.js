@@ -43,7 +43,7 @@ $(function() {
 								initFloor(postId,isResolved)
 							}else{
 								$("#isResolved").text("未解决");
-								$("#poster").append('<input id="floorBest" placeholder="输入最佳答案所属楼"/><input type="button" onclick="elect()" value="提交">');
+								$("#isResolvedSubmit").html('<input id="floorBest" placeholder="输入最佳答案所属楼"/><input type="button" onclick="elect()" value="提交">');
 								initFloor(postId,null);
 							}
 					} else {
@@ -55,7 +55,7 @@ $(function() {
 	
 	// 初始化楼信息
 	function initFloor(postId,isResolved) {
-		alert(isResolved);
+		/*alert(isResolved);*/
 		var initFloorUrl = null;
 		if(isResolved != null){
 			initFloorUrl = "/a4q/floor/getFloorListWithNum?postId="+postId+"&isResolved="+isResolved+"&fresh="+Math.random();
@@ -102,7 +102,7 @@ $(function() {
 					$(".register").hide();
 					moderatorJudge();
 				}else{
-					alert("未登录");
+					/*alert("未登录");*/
 					isLogin = false;
 				}
 			}

@@ -4,7 +4,7 @@ $(function() {
 
 function initCourse() {
 	var initUrl = "/a4q/course/getCourseList";
-	var data = $("#submitForm").serialize()
+	var data = $("#submitForm").serialize();
 	$.ajax({
 		url : initUrl,
 		type : "POST",

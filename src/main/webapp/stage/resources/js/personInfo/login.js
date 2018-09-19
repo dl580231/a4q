@@ -30,6 +30,7 @@ function login() {
 			success : function(data) {
 				if (data.state == 0) {
 					alert("登录成功");
+					window.location.href="/a4q/stage/headPage/headpage.html";
 				} else {
 					alert(data.stateInfo);
 				}

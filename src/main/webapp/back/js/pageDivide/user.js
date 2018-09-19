@@ -40,8 +40,7 @@ function search(currentPageLocal) {
 	var queryUserUrl = '/a4q/personInfoAdmin/getPersonInfoList?currentPage='
 			+ currentPageLocal;
 	var data = $("#submitForm").serialize();
-	$
-			.ajax({
+	$.ajax({
 				url : queryUserUrl,
 				type : "post",
 				data : data,
@@ -49,7 +48,7 @@ function search(currentPageLocal) {
 				success : function(data) {
 					if (data.state == 0) {
 						var pageDivide = data.data;
-						/* 判断页码的显示结束 */
+						/* 判断页码的显示开始*/
 						if (pageDivide.pageCount == 1) {
 							$('.page-control').hide();
 						}

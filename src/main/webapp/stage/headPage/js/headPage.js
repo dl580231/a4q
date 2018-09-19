@@ -7,6 +7,7 @@ function initPage(){
 	initResolved();
 	initUnResolved();
 	initRank();
+	loginState();
 }
 
 //初始化课程信息展示
@@ -56,7 +57,7 @@ function iterator(data){
 		   '<th width="12%">提问时间</th>'+
 		   '<th width="20%">提问者</th> </tr>';
 	$.map(data.data,function(value,index){
-	tempHtml += '<tr><td class="qaTitle"><span><a target="_blank" class="qaTitle_link" style="cursor: pointer; display: block;">'+value.postTitle+'</a></span></td>'+
+	tempHtml += '<tr><td class="qaTitle"><span><a href="/a4q/stage/postShow.html?postId='+value.postId+'" target="_blank" class="qaTitle_link" style="cursor: pointer; display: block;">'+value.postTitle+'</a></span></td>'+
 			'<td>'+formatD(value.createTime)+'</td>'+
 			'<td class="qa_askname"><a target="_blank">'+value.deployUser.userName+'</a></td></tr>';
 	});
@@ -113,4 +114,27 @@ function search(){
 //提出问题
 function ask(){
 	window.open("/a4q/stage/a4q.html");
+}
+
+//登录状态判断
+function loginState() {
+	var loginStateUrl = "/a4q/personInfoAdmin/loginState";
+	$.ajax({
+		url : loginStateUrl,
+		type : "GET",
+		asyn : false,
+		success : function(data) {
+			if (data.state == 0) {
+				user = data.data;
+				isLogin = true;
+				$("#login").text("个人中心");
+				$("#login").attr("href",
+						"/a4q/stage/personInfoShow.html?userId=" + user.userId);
+				$("#register").hide();
+			} else {
+				alert("未登录");
+				isLogin = false;
+			}
+		}
+	});
 }

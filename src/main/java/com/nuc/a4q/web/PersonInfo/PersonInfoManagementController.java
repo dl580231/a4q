@@ -92,13 +92,6 @@ public class PersonInfoManagementController {
 	@RequestMapping(value = "getPersonInfoList", method = RequestMethod.POST)
 	public Result getPersonInfoList(PageDivide pageDivide, PersonInfo personInfo) throws Exception {
 		// 1.处理前端传来的数据
-		/*
-		 * ObjectMapper mapper = new ObjectMapper(); String json =
-		 * mapper.writeValueAsString(jsonMap.get("pageDivide")); // 将对象转换成json
-		 * PageDivide pageDivide = mapper.readValue(json, PageDivide.class); json =
-		 * mapper.writeValueAsString(jsonMap.get("personInfo")); // 将对象转换成json
-		 * PersonInfo personInfo = mapper.readValue(json, PersonInfo.class);
-		 */
 		// 2.调用service进行处理
 		PageDivide pageDividResult = service.getPersonInfoList(pageDivide, personInfo);
 		// 3.向前端返回数据

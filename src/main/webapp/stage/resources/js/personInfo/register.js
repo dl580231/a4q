@@ -2,6 +2,7 @@ $(function() {
 	var userId = getQueryString("userId");
 	if (userId) {
 		$("#vc").hide();
+		$(".title").text("用户信息修改");
 		initUserInfo(userId);
 	}
 	$("#submit").click(function() {
