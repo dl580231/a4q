@@ -21,8 +21,14 @@ public class FloorService {
 	@Autowired
 	private FloorDao dao;
 
-
-	public Result getFloorList(Floor floor, PersonInfo user, Integer isResolved) {
+	/**
+	 * 获取回帖的楼信息并且获得最佳恢复属于的楼层
+	 * @param floor
+	 * @param user
+	 * @param isResolved
+	 * @return
+	 */
+	public Result getFloorListWithNum(Floor floor, PersonInfo user, Integer isResolved) {
 		Map<String, Object> model = new HashMap<>();
 		if (user.getUserId() != null) {
 			floor.setUser(user);
@@ -36,7 +42,7 @@ public class FloorService {
 			for (int i = 0; i < list.size(); i++) {
 				Floor bestAnswer = list.get(i);
 				if (bestAnswer.getFloorId() == isResolved) {
-					num = i+1;
+					num = i + 1;
 					break;
 				}
 			}
@@ -44,6 +50,21 @@ public class FloorService {
 			return ResultUtil.success(model);
 		}
 	}
+
+	/**
+	 * 获得楼列表
+	 * @param floor
+	 * @param user
+	 * @return
+	 */
+	public List<Floor> getFloorList(Floor floor, PersonInfo user) {
+		if (user.getUserId() != null) {
+			floor.setUser(user);
+		}
+		List<Floor> list = dao.queryFloorList(floor);
+		return list;
+	}
+
 
 	public void removeFloor(Floor floor) {
 		dao.deleteFloor(floor);
@@ -67,5 +88,4 @@ public class FloorService {
 		dao.insertFloor(floor);
 	}
 
-	
 }

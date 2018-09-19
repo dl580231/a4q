@@ -1,7 +1,7 @@
 $(function() {
 	var postId = getQueryString("postId");
-	if (!postId) {
-		/* window.location.href = "../../../headPage/headpage.html"; */
+	if (isNaN(postId)) {
+		 window.location.href = "/a4q/stage/headPage/headpage.html"; 
 	} else {
 		initPage(postId);
 	}
@@ -58,9 +58,9 @@ $(function() {
 		alert(isResolved);
 		var initFloorUrl = null;
 		if(isResolved != null){
-			initFloorUrl = "/a4q/floor/getFloorList?postId="+postId+"&isResolved="+isResolved+"&fresh="+Math.random();
+			initFloorUrl = "/a4q/floor/getFloorListWithNum?postId="+postId+"&isResolved="+isResolved+"&fresh="+Math.random();
 		}else{
-			initFloorUrl = "/a4q/floor/getFloorList?postId="+postId+"&fresh="+Math.random();
+			initFloorUrl = "/a4q/floor/getFloorListWithNum?postId="+postId+"&fresh="+Math.random();
 		}
 		
 		$.getJSON(initFloorUrl, function(data) {
