@@ -87,4 +87,15 @@ public interface PostDao {
 	 * @return
 	 */
 	public List<UserRank> getUserRank();
+
+	public List<Post> getResolvedByPriority(@Param("courseId") Integer courseId,
+			@Param("postContent") String postContent, @Param("postTitle") String postTitle);
+
+	/**
+	 * 通过优先级获得未解决问题的列表
+	 * 
+	 * @return
+	 */
+	public List<Post> getUnResolvedByPriority(@Param("courseId") Integer courseId,
+			@Param("postContent") String postContent, @Param("postTitle") String postTitle);
 }

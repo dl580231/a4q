@@ -32,14 +32,14 @@
 		<div class="search qafilet">
 			<div class="search_box">
 				<form id="submitForm">
-					<span class="search_input"><input type="text" id="word" name="searchWord" tabindex="1" maxlength="256" size="60"
-						value="请输入搜索内容……" class="hidevalue"></span> 
-						<input type="button" tabindex="2" value="我要搜索" onclick="" class="sec_search search_btn qabg"> 
+					<span class="search_input"><input type="text" id="key" name="searchWord" tabindex="1" maxlength="256" size="60"
+						placeholder="请输入搜索内容……" class="hidevalue"></span> 
+						<input type="button" tabindex="2" value="我要搜索" onclick="search()" class="sec_search search_btn qabg"> 
 						<input type="button" tabindex="3" value="我要提问" onclick="ask();" class="sec_ask search_btn qabg">
 				</form>
 			</div>
 			<div class="search_key">
-				热门搜索：<a href="javascript:hot_search('高一数学');">高一数学</a>
+				热门搜索：<a href="/a4q/stage/postList.html?key=java" target="_blank">Java</a><a href="/a4q/stage/postList.html?key=网络" target="_blank">网络</a>
 			</div>
 		</div>
 
@@ -102,10 +102,10 @@
 							</div>
 						</div>
 					</div>
-					<ul class="tab tabTag_qa mart10 clearfix">
+					<!-- <ul class="tab tabTag_qa mart10 clearfix">
 						<li onclick="setTab('qa_v',0);" class="curTag">精选问题</li>
-					</ul>
-					<div class="tabCon_qa">
+					</ul> -->
+					<!-- <div class="tabCon_qa">
 						<div class="m_qalist latestQa">
 							<table summary="精选问题">
 								<tbody>
@@ -134,7 +134,7 @@
 								</tbody>
 							</table>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<div class="sidebar190 right">

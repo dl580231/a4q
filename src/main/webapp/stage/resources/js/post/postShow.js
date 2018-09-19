@@ -45,7 +45,7 @@ function initFloor(postId) {
 				tempHtml += '<div class="answer-item atl-item" floorid="1">'+
                 			'<div class="atl-head-reply"><a>版主删除权限</a></div>'+
                 			'<div class="user" id="floorUser">'+
-                			'<a>'+value.user.userName+'</a>&nbsp;'+format(value.createTime)+'&nbsp;'+index+'楼</div>'+
+                			'<a>'+value.user.userName+'</a>&nbsp;'+format(value.createTime)+'&nbsp;'+(++index)+'楼</div>'+
                 			'<div class="content" id="floorContent">'+value.floorContent+'</div></div>';
 			});
 			$("#floorShow").html(tempHtml);

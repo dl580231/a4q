@@ -103,4 +103,14 @@ public class PostService {
 		List<UserRank> userList = dao.getUserRank();
 		return userList;
 	}
+	
+	public List<Post> getResolved(Integer courseId,String postContent,String postTitle) {
+		List<Post> list = dao.getResolvedByPriority(courseId, postContent, postTitle);
+		return list;
+	}
+	
+	public List<Post> getUnResolved(Integer courseId,String postContent,String postTitle) {
+		List<Post> list = dao.getUnResolvedByPriority(courseId, postContent, postTitle);
+		return list;
+	}
 }

@@ -129,4 +129,40 @@ public class PostManagementController {
 		List<UserRank> userList = service.getUserRank();
 		return ResultUtil.success(userList);
 	}
+
+	/**
+	 * 通过优先级获得已解决问题的列表
+	 * 
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "getResolved", method = RequestMethod.GET)
+	public Result getResolved(Integer courseId, String key) {
+		String postContent = "";
+		String postTitle = "";
+		if (key != null && key.length() > 0) {
+			postContent = key;
+			postTitle = key;
+		}
+		List<Post> list = service.getResolved(courseId, postContent, postTitle);
+		return ResultUtil.success(list);
+	}
+
+	/**
+	 * 通过优先级获得未问题的列表
+	 * 
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "getUnResolved", method = RequestMethod.GET)
+	public Result getUnResolved(Integer courseId, String key) {
+		String postContent = "";
+		String postTitle = "";
+		if (key != null && key.length() > 0) {
+			postContent = key;
+			postTitle = key;
+		}
+		List<Post> list = service.getUnResolved(courseId, postContent, postTitle);
+		return ResultUtil.success(list);
+	}
 }

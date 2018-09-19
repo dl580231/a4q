@@ -20,14 +20,14 @@
 		<div class="page page-current">
 			<header class="bar bar-nav">
 				<h1 class='title'>
-					<font size="+5">我的论坛</font>
+					<font size="+3">个人论坛</font>
 				</h1>
 			</header>
 			<div class="content">
 				<div class="buttons-tab">
-					<a href="#tab1" class="tab-link active button">我的信息</a> <a
-						href="#tab2" class="tab-link button">我的发帖</a> <a href="#tab3"
-						class="tab-link button">我的回帖</a>
+					<a href="#tab1" class="tab-link active button">个人信息</a> <a
+						href="#tab2" class="tab-link button">个人发帖</a> <a href="#tab3"
+						class="tab-link button">个人回帖</a>
 				</div>
 				<div class="content-block">
 					<div class="tabs">
@@ -65,21 +65,6 @@
 																	<div class="item-input">
 																		<input type="text" id="email" name="email"
 																			placeholder="邮箱地址">
-																	</div>
-																</div>
-															</div>
-														</li>
-
-														<li>
-															<div class="item-content">
-																<div class="item-media">
-																	<i class="icon icon-form-name"></i>
-																</div>
-																<div class="item-inner">
-																	<div class="item-title label">密码：</div>
-																	<div class="item-input">
-																		<input type="password" name="password" id="pw"
-																			maxlength=15 placeholder="6-15位的密码">
 																	</div>
 																</div>
 															</div>
@@ -136,51 +121,7 @@
 																</div>
 															</div>
 														</li>
-														<!-- 用户头像,input（file），留着有机会了做 -->
-														<!-- <li>
-							<div class="item-content">
-								<div class="item-media">
-									<i class="icon icon-form-name"></i>
-								</div>
-								<div class="item-inner">
-									<div class="item-title label">店铺首图</div>
-									<div class="item-input">
-										<input type="file" id="shop-img">
-									</div>
-								</div>
-							</div>
-						</li> -->
-
-														<!-- 验证码，防止重复提交 -->
-														<li id="vc">
-															<div class="item-content">
-																<div class="item-media">
-																	<i class="icon icon-form-name"></i>
-																</div>
-																<div class="item-inner">
-																	<div class="item-title label">验证码</div>
-																	<div class="item-input">
-																		<input type="text" name="verifyCode" id="verifyCode"
-																			placeholder="验证码"> <img alt="点击更换"
-																			src="/a4q/Kaptcha" name="verifyCode" title="点击更换"
-																			onclick="changeVerifyCode(this)">
-																	</div>
-																</div>
-															</div>
-														</li>
 													</ul>
-												</div>
-												<div class="content-block">
-													<div class="row">
-														<div class="col-50">
-															<a class="button button-big button-fill button-danger"
-																onclick="cancle()">返回</a>
-														</div>
-														<div class="col-50">
-															<a class="button button-big button-fill button-success"
-																id="submit">提交</a>
-														</div>
-													</div>
 												</div>
 											</div>
 										</div>
@@ -190,38 +131,38 @@
 						</div>
 						<div id="tab2" class="tab">
 							<div class="content-block">
-<table width="100%">
-         <tr>
-         <td width="70%"><font size="+3"  color="#FF0000">帖子标题</font></td>
-         <td width="30%"><font size="+3"  color="#FF0000">发帖时间</font></td>
-         </tr>
-		 <tr>
-		 <td><a href="">JAVA的发展史...</a></td>
-		 <td>2018.9.18.15点52分...</td>
-		 </tr>
-		 <tr>
-		 <td><a href="">数据库的作用...</a></td>
-		 <td>2018.9.18.15点53分...</td>
-		 </tr>
-		 </table>
+								<div class="list-block contacts-block">
+									<div class="list-group">
+										<ul id="deployPost">
+											<!-- <li class="list-group-title">个人发布帖子展示</li>
+											<li>
+												<div class="item-content">
+													<div class="item-inner">
+														<div class="item-title"><a>这个十四帖子的内容看女警南京南京渴望你就问价格</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;151515</div>
+													</div>
+												</div>
+											</li> -->
+										</ul>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div id="tab3" class="tab">
 							<div class="content-block">
-						<table width="100%">
-         <tr>
-         <td width="70%"><font size="+3"  color="#FF0000">帖子标题</font></td>
-         <td width="30%"><font size="+3"  color="#FF0000">回帖时间</font></td>
-         </tr>
-		 <tr>
-		 <td><a href="">JAVA的发展史...</a></td>
-		 <td>2018.9.18.15点52分...</td>
-		 </tr>
-		 <tr>
-		 <td><a href="">数据库的作用...</a></td>
-		 <td>2018.9.18.15点53分...</td>
-		 </tr>
-		 </table>
+								<div class="list-block contacts-block">
+									<div class="list-group">
+										<ul id="replyPost">
+											<!-- <li class="list-group-title">回复帖子展示</li>
+											<li>
+												<div class="item-content">
+													<div class="item-inner">
+														<div class="item-title">标题1</div>
+													</div>
+												</div>
+											</li> -->
+										</ul>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -236,6 +177,9 @@
 		src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 	<script type='text/javascript'
 		src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
-
+	<script type='text/javascript'
+		src="resources/js/personInfo/personInfoShow.js" charset='utf-8'></script>
+	<script type='text/javascript'
+		src="resources/js/common/common.js" charset='utf-8'></script>
 </body>
 </html>

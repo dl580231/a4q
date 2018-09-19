@@ -112,8 +112,22 @@ public class PostDaoTest extends BaseTest {
 	}
 	
 	@Test
+	@Ignore
 	public void getUserRankTest() {
 		List<UserRank> list = postdao.getUserRank();
+		System.out.println(list);
+	}
+	
+	@Test
+	@Ignore
+	public void getResolvedByPriority() {
+		List<Post> list = postdao.getResolvedByPriority(4,"","");
+		System.out.println(list);
+	}
+	
+	@Test
+	public void getUnResolvedByPriority() {
+		List<Post> list = postdao.getUnResolvedByPriority(null,"","网络");
 		System.out.println(list);
 	}
 }

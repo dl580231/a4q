@@ -21,7 +21,7 @@ function initCourse(){
 				var tempHtml = "";
 				$.map(data.data,function(value,index){
 					tempHtml +='<dl><dt>'+
-								'<a href="">'+value.courseName+'</a>'+
+								'<a href="/a4q/stage/postList.html?courseId='+value.courseId+'" target="_blank"">'+value.courseName+'</a>'+
 								'</dt></dl>'
 				});
 				$("#courseInfo").html(tempHtml);
@@ -101,4 +101,11 @@ function initRank(){
 			}
 		}
 	});
+}
+
+//搜索功能实现
+function search(){
+	var key = $("#key").val();
+	var url = "/a4q/stage/postList.html?key="+key;
+	window.open(url); 
 }
