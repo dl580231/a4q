@@ -60,6 +60,7 @@ function removeCourse(courseId) {
 	}
 }
 
+//获得每个课程的发帖数量
 function postCount(courseId){
 	var PostCountUrl = "/a4q/course/getPostCountByCourseId?courseId="+courseId;
 	var result = 0;

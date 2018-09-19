@@ -72,15 +72,13 @@ function search(currentPageLocal) {
 						$("#currentPage").text(
 								pageDivide.currentPage + '/'
 										+ pageDivide.pageCount);
-						var tempHtml = '<tr><th width="30"><input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);" /></th>'
+						var tempHtml = '<tr>'
 								+ '<th>用户ID</th><th>用户名称</th><th>性别</th><th>profile_img</th><th>电话</th><th>邮箱</th><th>user_type</th><th>label</th>'
 								+ '<th>创建时间</th><th>最后修改时间</th><th>操作</th></tr>';
 						$.map(
 										pageDivide.entityList,
 										function(value, index) {
-											tempHtml += '<tr><td><input type="checkbox" name="IDCheck" value="'
-													+ value.userId
-													+ '" class="acb" /></td><td>'
+											tempHtml += '<tr><td>'
 													+ value.userId
 													+ '</td><td>'
 													+ value.userName

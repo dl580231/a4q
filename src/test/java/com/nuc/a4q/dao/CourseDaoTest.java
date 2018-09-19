@@ -50,7 +50,6 @@ public class CourseDaoTest extends BaseTest {
 	}
 
 	@Test
-	@Ignore
 	public void queryCourseListTest() {
 		Course course = new Course();
 		List<Course> list = dao.queryCourseList(course);
@@ -65,6 +64,7 @@ public class CourseDaoTest extends BaseTest {
 	}
 	
 	@Test
+	@Ignore
 	public void getCourseByCourseNameTest() {
 		Integer result = dao.getCourseByCourseName("离散");
 		System.out.println(result);

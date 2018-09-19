@@ -74,7 +74,10 @@ public class CourseManagementController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "removeCourse", method = RequestMethod.GET)
-	public Result removeCourse(@Validated(value = Delete.class) Course course) {
+	public Result removeCourse(@Validated(value = Delete.class) Course course,BindingResult result) {
+		if(result.hasErrors()) {
+			return ResultUtil.error(result.getFieldError().getDefaultMessage());
+		}
 		service.removeCurse(course);
 		return ResultUtil.success();
 	}
@@ -130,6 +133,12 @@ public class CourseManagementController {
 		return ResultUtil.success(count);
 	}
 
+	/**
+	 * 版主权限认证
+	 * @param request
+	 * @param courseId
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "moderatorJudge", method = RequestMethod.GET)
 	public Result moderatorJudge(HttpServletRequest request, Integer courseId) {

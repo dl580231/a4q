@@ -31,7 +31,7 @@
  		tb_course c left join tb_person_info p on c.moderator_id=p.user_id
  		<where>
  			<if test="courseName != null">and course_name like CONCAT("%",#{courseName},"%")</if>
- 			<if test="moderator != null">and moderator_id = #{moderator.userId}</if>
+ 			<if test="moderator != null and moderator.userId != null">and moderator_id = #{moderator.userId}</if>
  			<if test="courseId != null">and course_id = #{courseId}</if>
  		</where>
  	</select>

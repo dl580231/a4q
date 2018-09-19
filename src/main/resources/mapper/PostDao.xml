@@ -121,7 +121,7 @@
 		where best_answer_id is not null AND
 		t.user_id = u.user_id
 		ORDER BY priority ASC
-		limit 0,8
+		limit 0,15
 	</select>
 
 	<select id="getUnResolvedPostTestByPriority" resultMap="postMap">
@@ -133,7 +133,7 @@
 		t.user_id =
 		u.user_id
 		ORDER BY priority ASC
-		limit 0,8
+		limit 0,15
 	</select>
 
 	<select id="getUserRank" resultType="UserRank">

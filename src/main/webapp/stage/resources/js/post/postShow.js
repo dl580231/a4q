@@ -30,6 +30,8 @@ $(function() {
 			success : function(data){
 					if (data.state == 0) {
 							var post = data.data;
+							$("#courseNameShow").text(post.course.courseName);
+							$("#courseNameShow").attr("href","postList.html?courseId="+post.course.courseId);
 							$("#postTitle").text(post.postTitle);
 							$("#postContent").text(post.postContent);
 							$("#userName").text(post.deployUser.userName);
@@ -144,7 +146,7 @@ $(function() {
 				isModerator = true;
 				$(".moderator-delete").show();
 			}else{
-				/*alert("不是版主");*/
+				alert("不是版主");
 			}
 		});
 	}
